@@ -1,0 +1,20 @@
+eval scr.color = true
+eval dbg.bep   = entry
+
+eval dbg.slow = true
+
+eval file.id   = true
+eval file.flag = true
+eval file.analyze = true
+
+eval asm.cmtright = true
+
+eco focus
+eval scr.utf8 = true
+eval cmd.stack = true
+eval asm.relsub = true
+eval asm.syntax = intel
+
+# Shows pseudocode.
+eval asm.pseudo = true
+eval asm.describe = true
