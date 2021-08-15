@@ -39,8 +39,8 @@ require "file-tree"
 require('git')
 
 
+-- Set Gruvbox
 cmd "syntax on"
-
 vim.o.background = "dark" -- or "light" for light mode
 vim.cmd([[colorscheme gruvbox]])
 

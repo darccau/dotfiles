@@ -37,5 +37,6 @@ return packer.startup(
         -- misc
         use "karb94/neoscroll.nvim"
         use "nvim-lua/plenary.nvim"
+        use "kristijanhusak/orgmode.nvim"
     end
 )
