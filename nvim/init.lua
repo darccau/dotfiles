@@ -1,52 +1,31 @@
-local cmd = vim.cmd
-local g = vim.g
+require("bootstrap") -- plugins configs
+require("editor") -- editor configs
 
-g.mapleader = " "
-g.auto_save = 0
+-- Global functions
 
--- Load plugins
-require "plugins"
+-- general print using inspect
+P = function(v)
+	print(vim.inspect(v))
+	return v
+end
 
--- Lsp stuff
-require "lsp"
-require "saga"
+-- print table values
+PP = function(...)
+	local vars = vim.tbl_map(vim.inspect, { ... })
+	print(unpack(vars))
+end
 
--- Hightlight
-require "highlight"
+-- helper function for quick reloading a lua module and optionally its subpackages
+R = function(name, all_submodules)
+	local reload = require("plenary.reload").reload_module
+	return reload(name, all_submodules)
+end
 
--- Miscelanious
-require "misc"
-
--- Mappings
-require "mappings"
-
--- Autopair
-require("nvim-autopairs").setup()
-
--- Scroll
-require("neoscroll").setup() 
-
--- Comments
-require('nvim_comment').setup()
-
--- File fuzzing
-require "file-fuzzing"
-
--- File tree
-require "file-tree"
-
--- Git 
-require('git')
-
-
--- Set Gruvbox
-cmd "syntax on"
-vim.o.background = "dark" -- or "light" for light mode
-vim.cmd([[colorscheme gruvbox]])
-
-g.indentLine_enabled = 1
-g.indent_blankline_char = "▏"
-
-g.indent_blankline_show_trailing_blankline_indent = false
-g.indent_blankline_show_first_indent_level = false
-
+-- reload all my custom modules
+RR = function()
+	R("editor")
+	R("bootstrap")
+	R("plugins", true)
+	vim.cmd("PackerCompile")
+	print("neovimfiles reloaded")
+end
