@@ -20,6 +20,7 @@ return packer.startup(function(use)
   use 'mhartington/formatter.nvim'
 
   use 'folke/tokyonight.nvim'
+  use 'ayu-theme/ayu-vim'
   -- icons
   use 'kyazdani42/nvim-web-devicons'
 
@@ -39,7 +40,9 @@ return packer.startup(function(use)
       'saadparwaiz1/cmp_luasnip',
     },
   }
+
   use 'TimUntersberger/neogit'
+
   use 'nvim-lua/plenary.nvim'
 end)
 

@@ -4,7 +4,7 @@ local cmd = vim.cmd
 
 map("n", "<leader>U", [[<cmd>PackerSync<cr>]], default_opts)
 map("n", "<leader>M", [[<cmd>e ~/.config/nvim/lua/mappings.lua<cr>]], default_opts)
-map("n", "<leader>S", [[<cmd>e ~/.config/nvim/lua/mappings.lua<cr>]], default_opts)
+map("n", "<leader>S", [[<cmd>e ~/.config/nvim/lua/settings.lua<cr>]], default_opts)
 map("n", "<leader>I", [[<cmd>e ~/.config/nvim/init.lua<cr>]], default_opts)
 map("n", "<leader>a", [[<cmd>noh<CR>]], default_opts)
 map("n", "<leader>h", [[<cmd>bfirst<CR>]], default_opts)
