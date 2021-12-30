@@ -1,6 +1,5 @@
-local cmd = vim.cmd
-cmd [[packadd packer.nvim]]
 
+local cmd = vim.cmd
 local packer = require 'packer'
 
 -- Add packages
@@ -13,21 +12,28 @@ return packer.startup(function(use)
   -- autopair
   use 'windwp/nvim-autopairs'
 
-  use 'sindrets/diffview.nvim'
-
   use 'nvim-telescope/telescope.nvim'
 
   use 'mhartington/formatter.nvim'
 
   use 'folke/tokyonight.nvim'
-  use 'ayu-theme/ayu-vim'
+
   -- icons
   use 'kyazdani42/nvim-web-devicons'
 
   -- treesitter interface
-  use 'nvim-treesitter/nvim-treesitter'
+  use {'nvim-treesitter/nvim-treesitter'}
 
   use 'terrortylor/nvim-comment'
+
+  use 'alvan/vim-closetag'
+
+  use {
+    "max397574/better-escape.nvim",
+    config = function()
+      require("better_escape").setup()
+    end,
+  }
 
   require('nvim_comment').setup()
 

@@ -10,5 +10,6 @@ require("telescope").setup({
       "--column",
       "--smart-case",
     },
+    file_ignore_patterns = { "node_modules" }
   },
 })

@@ -41,6 +41,8 @@ require("formatter").setup({
 		javascriptreact = { prettier },
 		typescript = { prettier },
 		typescriptreact = { prettier },
+		html = { prettier },
+		css = { prettier },
 		markdown = { prettier },
 		json = {
 			function()
@@ -67,6 +69,6 @@ require("formatter").setup({
 vim.cmd([[
 augroup FormatAu
     autocmd!
-    autocmd BufWritePost *.go,*.jsx,*.js,*.json,*.md,*.py,*.yaml,*.sh,*.lua FormatWrite
+    autocmd BufWritePost *.html,*.css,*.go,*.jsx,*.js,*.json,*.md,*.py,*.yaml,*.sh,*.lua FormatWrite
 augroup END
 ]])
