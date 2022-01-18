@@ -8,5 +8,5 @@ require('plugins/treesitter')
 require('plugins/file-fuzzy')
 require('plugins/autopairs')
 require('style')
-require('plugins/format')
+require('plugins/formatter')
 
