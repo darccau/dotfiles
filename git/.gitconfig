@@ -5,6 +5,7 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
+	ignorecase = false
 
 [push]
   default = simple
@@ -67,4 +68,4 @@
   root = ~/.ghq
 
 [credential]
-	helper = cache --timeout=<1296000>
+	helper = cache
