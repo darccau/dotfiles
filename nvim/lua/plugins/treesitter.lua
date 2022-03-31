@@ -1,5 +1,26 @@
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "all",
+require("nvim-treesitter.configs").setup({
   highlight = { enable = true },
-  indent = { enable = true }
-}
+  indent = { enable = true },
+  ensure_installed = {
+    "go",
+    "gomod",
+    "python",
+    "lua",
+    "yaml",
+    "json",
+    "javascript",
+    "bash",
+    "typescript",
+    "hcl",
+    "make",
+    "css",
+    "tsx",
+    "c",
+    "cpp",
+    "dockerfile",
+    "bibtex",
+    "java",
+    "php",
+    "solidity",
+  },
+})
