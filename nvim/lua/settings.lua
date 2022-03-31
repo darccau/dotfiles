@@ -1,5 +1,4 @@
 local cmd = vim.cmd
-
 local exec = vim.api.nvim_exec
 local fn = vim.fn
 local g = vim.g
@@ -14,7 +13,6 @@ opt.swapfile = false          -- don't use swapfile
 -- Neovim UI
 opt.number = true
 opt.foldmethod = 'marker'     -- enable folding (default 'foldmarker')
-opt.colorcolumn = '80'
 opt.splitright = true
 opt.splitbelow = true
 opt.ignorecase = true
@@ -60,32 +58,6 @@ cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
 
 -- insert mode completion options
  opt.completeopt = 'menuone,noselect'
-
- -- disable builtins plugins
- local disabled_built_ins = {
-     "netrw",
-     "netrwPlugin",
-     "netrwSettings",
-     "netrwFileHandlers",
-     "gzip",
-     "zip",
-     "zipPlugin",
-     "tar",
-     "tarPlugin",
-     "getscript",
-     "getscriptPlugin",
-     "vimball",
-     "vimballPlugin",
-     "2html_plugin",
-     "logipat",
-     "rrhelper",
-     "spellfile_plugin",
-     "matchit"
- }
-
- for _, plugin in pairs(disabled_built_ins) do
-     g["loaded_" .. plugin] = 1
- end
 
 -- disable nvim intro
  opt.shortmess:append "sI"

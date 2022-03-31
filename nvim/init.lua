@@ -1,7 +1,7 @@
 require('settings')
 require('mappings')
 require('plugins/packer')
-require('plugins/cmp')
+--require('plugins/cmp')
 require('plugins/file-tree')
 require('plugins/git')
 require('plugins/treesitter')
