@@ -69,10 +69,20 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["FixCursorHold.nvim"] = {
+    loaded = true,
+    path = "/home/darccau/.local/share/nvim/site/pack/packer/start/FixCursorHold.nvim",
+    url = "https://github.com/antoinemadec/FixCursorHold.nvim"
+  },
   ["formatter.nvim"] = {
     loaded = true,
     path = "/home/darccau/.local/share/nvim/site/pack/packer/start/formatter.nvim",
     url = "https://github.com/mhartington/formatter.nvim"
+  },
+  ["goldsmith.nvim"] = {
+    loaded = true,
+    path = "/home/darccau/.local/share/nvim/site/pack/packer/start/goldsmith.nvim",
+    url = "https://github.com/WhoIsSethDaniel/goldsmith.nvim"
   },
   ["lir.nvim"] = {
     loaded = true,
@@ -94,6 +104,16 @@ _G.packer_plugins = {
     path = "/home/darccau/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
+  ["nvim-lsp-installer"] = {
+    loaded = true,
+    path = "/home/darccau/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    url = "https://github.com/williamboman/nvim-lsp-installer"
+  },
+  ["nvim-lspconfig"] = {
+    loaded = true,
+    path = "/home/darccau/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/darccau/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -110,6 +130,7 @@ _G.packer_plugins = {
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
+    config = { "\27LJ\2\nq\0\0\5\0\a\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\3\0009\2\4\0029\2\5\2'\4\6\0B\2\2\0A\0\0\1K\0\1\0\b%:p\vexpand\afn\bvim\19test_directory\25plenary.test_harness\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\2\0\15<leader>tp\6n\bset\vkeymap\bvim\0" },
     loaded = true,
     path = "/home/darccau/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
@@ -128,10 +149,24 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/darccau/.local/share/nvim/site/pack/packer/start/vim-closetag",
     url = "https://github.com/alvan/vim-closetag"
+  },
+  ["vim-test"] = {
+    config = { "\27LJ\2\n×\1\0\0\f\0\b\0\0225\0\0\0004\1\3\0005\2\1\0>\0\4\2>\2\1\0015\2\2\0>\0\4\2>\2\2\0016\2\3\0\18\4\1\0B\2\2\4H\5\a€6\a\4\0009\a\5\a9\a\6\a6\t\a\0\18\v\6\0B\t\2\0A\a\0\1F\5\3\3R\5÷K\0\1\0\vunpack\bset\vkeymap\bvim\npairs\1\4\0\0\6n\15<leader>tt\22<Cmd>TestFile<CR>\1\4\0\0\6n\14<leader>t\25<Cmd>TestNearest<CR>\1\0\2\vsilent\2\fnoremap\2\0" },
+    loaded = true,
+    path = "/home/darccau/.local/share/nvim/site/pack/packer/start/vim-test",
+    url = "https://github.com/vim-test/vim-test"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: plenary.nvim
+time([[Config for plenary.nvim]], true)
+try_loadstring("\27LJ\2\nq\0\0\5\0\a\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\3\0009\2\4\0029\2\5\2'\4\6\0B\2\2\0A\0\0\1K\0\1\0\b%:p\vexpand\afn\bvim\19test_directory\25plenary.test_harness\frequire\\\1\0\6\0\a\0\t6\0\0\0009\0\1\0009\0\2\0'\2\3\0'\3\4\0003\4\5\0005\5\6\0B\0\5\1K\0\1\0\1\0\2\vsilent\2\fnoremap\2\0\15<leader>tp\6n\bset\vkeymap\bvim\0", "config", "plenary.nvim")
+time([[Config for plenary.nvim]], false)
+-- Config for: vim-test
+time([[Config for vim-test]], true)
+try_loadstring("\27LJ\2\n×\1\0\0\f\0\b\0\0225\0\0\0004\1\3\0005\2\1\0>\0\4\2>\2\1\0015\2\2\0>\0\4\2>\2\2\0016\2\3\0\18\4\1\0B\2\2\4H\5\a€6\a\4\0009\a\5\a9\a\6\a6\t\a\0\18\v\6\0B\t\2\0A\a\0\1F\5\3\3R\5÷K\0\1\0\vunpack\bset\vkeymap\bvim\npairs\1\4\0\0\6n\15<leader>tt\22<Cmd>TestFile<CR>\1\4\0\0\6n\14<leader>t\25<Cmd>TestNearest<CR>\1\0\2\vsilent\2\fnoremap\2\0", "config", "vim-test")
+time([[Config for vim-test]], false)
 if should_profile then save_profiles() end
 
 end)
