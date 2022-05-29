@@ -59,43 +59,6 @@ local function on_attach(client, bufnr)
         })
     end
 
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        local lsp_highlight = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = true })
-        vim.api.nvim_create_autocmd("CursorHold", {
-            pattern = "<buffer>",
-            group = lsp_highlight,
-            callback = function()
-                vim.lsp.buf.document_highlight()
-            end,
-        })
-        vim.api.nvim_create_autocmd("CursorMoved", {
-            pattern = "<buffer>",
-            group = lsp_highlight,
-            callback = function()
-                vim.lsp.buf.clear_references()
-            end,
-        })
-    end
-end
-
-local function make_config()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { "documentation", "detail", "additionalTextEdits" },
-    }
-    return {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        handlers = {
-            ["textDocument/publishDiagnostics"] = vim.lsp.with(
-                vim.lsp.diagnostic.on_publish_diagnostics,
-                { virtual_text = false }
-            ),
-        },
-    }
-end
 
 -- lsp servers
 local required_servers = {
@@ -110,57 +73,30 @@ local required_servers = {
     "terraformls", -- terraform
 }
 
--- default config
-local cfg = make_config()
-
 -- configuring null-ls for formatters
 local formatting = nls.builtins.formatting
 local diagnostics = nls.builtins.diagnostics
 local actions = nls.builtins.code_actions
 
-nls.setup({
-    sources = {
-        formatting.prettier.with({
-            filetypes = { "html", "json", "markdown", "toml" },
-        }),
-        formatting.shfmt,
-        formatting.stylua.with({
-            condition = function(utils)
-                return utils.root_has_file({ "stylua.toml", ".stylua.toml" })
-            end,
-        }),
-        formatting.latexindent,
-        formatting.black,
-        formatting.terraform_fmt,
-        formatting.goimports,
-        diagnostics.golangci_lint,
-        diagnostics.yamllint,
-        diagnostics.shellcheck,
-        actions.shellcheck,
-    },
-    on_attach = cfg.on_attach,
-})
-
--- golang
-require("goldsmith").config({
-    null = { run_setup = false, revive = false, gofumpt = true, golines = false },
-    mappings = { format = {} },
-})
-
--- check for missing lsp servers and install them
-for _, svr in pairs(required_servers) do
-    local ok, lsp_server = servers.get_server(svr)
-    if ok then
-        if not require("goldsmith").needed(svr) then
-            lsp_server:on_ready(function()
-                lsp_server:setup(cfg)
-            end)
-
-            if not lsp_server:is_installed() then
-                lsp_server:install()
-            end
-        end
-    end
+    nls.setup({
+        sources = {
+            formatting.prettier.with({
+                filetypes = { "html", "json", "markdown", "toml" },
+            }),
+            formatting.shfmt,
+            formatting.stylua.with({
+                condition = function(utils)
+                    return utils.root_has_file({ "stylua.toml", ".stylua.toml" })
+                end,
+            }),
+            formatting.latexindent,
+            formatting.black,
+            formatting.terrafmt,
+            formatting.goimports,
+            diagnostics.golangci_lint,
+            diagnostics.yamllint,
+            diagnostics.shellcheck,
+            actions.shellcheck,
+        },
+    })
 end
-
-return { config = make_config }

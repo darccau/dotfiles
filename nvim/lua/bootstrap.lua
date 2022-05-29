@@ -7,15 +7,9 @@ return packer.startup(function(use)
 
     use 'jose-elias-alvarez/null-ls.nvim'
 
-    -- plugin development and utils
-    use({
-        "nvim-lua/plenary.nvim",
-        config = function()
-            vim.keymap.set("n", "<leader>tp", function()
-                require("plenary.test_harness").test_directory(vim.fn.expand("%:p"))
-            end, { noremap = true, silent = true })
-        end,
-    })
+    use("nvim-lua/plenary.nvim")
+
+    use("numToStr/Comment.nvim")
 
     use 'windwp/nvim-autopairs'
 
@@ -33,24 +27,13 @@ return packer.startup(function(use)
 
     use 'TimUntersberger/neogit'
 
-    -- testing
+    -- editor
     use({
-        "vim-test/vim-test",
+        "numToStr/Comment.nvim",
         config = function()
-            local opts = { noremap = true, silent = true }
-            local mappings = {
-                { "n", "<leader>t", [[<Cmd>TestNearest<CR>]], opts }, -- call test for function in cursor
-                { "n", "<leader>tt", [[<Cmd>TestFile<CR>]], opts }, -- call test for current file
-            }
-
-            for _, m in pairs(mappings) do
-                vim.keymap.set(unpack(m))
-            end
+            require("Comment").setup({})
         end,
     })
-
-
-    use({ "neovim/nvim-lspconfig", requires = { "williamboman/nvim-lsp-installer" } })
 
     use({
         "TimUntersberger/neogit",
@@ -65,12 +48,5 @@ return packer.startup(function(use)
             })
         end,
     })
-
-    use({
-        "WhoIsSethDaniel/goldsmith.nvim",
-        run = ":GoInstallBinaries",
-        requires = { "antoinemadec/FixCursorHold.nvim" },
-    })
-
 
 end)
