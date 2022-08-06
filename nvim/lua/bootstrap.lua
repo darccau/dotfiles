@@ -1,52 +1,63 @@
 local packer = require 'packer'
 
 return packer.startup(function(use)
-    use 'wbthomason/packer.nvim'
+  use 'wbthomason/packer.nvim'
 
-    use 'tamago324/lir.nvim'
+  use 'wakatime/vim-wakatime'
 
-    use 'jose-elias-alvarez/null-ls.nvim'
+  use 'tamago324/lir.nvim'
 
-    use("nvim-lua/plenary.nvim")
+  use 'hoob3rt/lualine.nvim'
 
-    use("numToStr/Comment.nvim")
+  use 'romgrk/barbar.nvim'
 
-    use 'windwp/nvim-autopairs'
+  use 'jose-elias-alvarez/null-ls.nvim'
 
-    use 'nvim-telescope/telescope.nvim'
+  use "nvim-lua/plenary.nvim"
 
-    use 'mhartington/formatter.nvim'
+  use 'neovim/nvim-lspconfig'
 
-    use 'folke/tokyonight.nvim'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/nvim-cmp'
 
-    use 'kyazdani42/nvim-web-devicons'
+  use 'windwp/nvim-autopairs'
 
-    use 'nvim-treesitter/nvim-treesitter'
+  use 'L3MON4D3/LuaSnip'
+  use {
+    'saadparwaiz1/cmp_luasnip',
+    requires = {'L3MON4D3/LuaSnip'}
+  }
 
-    use 'alvan/vim-closetag'
+  use {
+    'rafamadriz/friendly-snippets',
+    requires = {'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'}
+  }
 
-    use 'TimUntersberger/neogit'
+  use 'nvim-telescope/telescope.nvim'
 
-    -- editor
-    use({
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup({})
-        end,
-    })
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
-    use({
-        "TimUntersberger/neogit",
-        requires = {
-            "sindrets/diffview.nvim",
-        },
-        config = function()
-            require("neogit").setup({
-                kind = "split",
-                integrations = { diffview = true },
-                disable_commit_confirmation = true,
-            })
-        end,
-    })
+  use 'lewis6991/gitsigns.nvim'
+
+  use 'kyazdani42/nvim-web-devicons'
+
+  use 'folke/tokyonight.nvim'
+
+  use 'kyazdani42/nvim-web-devicons'
+
+  use 'nvim-treesitter/nvim-treesitter'
+
+  use 'alvan/vim-closetag'
+
+  use "rcarriga/nvim-notify" 
+
+  use("numToStr/Comment.nvim")
+
+  use("sindrets/diffview.nvim")
+
+  use("tpope/vim-fugitive")
 
 end)

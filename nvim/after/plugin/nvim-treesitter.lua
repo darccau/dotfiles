@@ -1,10 +1,21 @@
-require("nvim-treesitter.configs").setup({
-  highlight = { enable = true },
-  indent = { enable = true },
+
+local status_nvim_treesitter_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not status_nvim_treesitter_ok then return end
+
+configs.setup {
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  indent = {
+    enable = false,
+    disable = {},
+  },
   ensure_installed = {
     "go",
     "gomod",
     "python",
+    "latex",
     "lua",
     "yaml",
     "json",
@@ -23,4 +34,5 @@ require("nvim-treesitter.configs").setup({
     "php",
     "solidity",
   },
-})
+}
+
