@@ -5,11 +5,13 @@ return packer.startup(function(use)
 
   use 'wakatime/vim-wakatime'
 
-  use 'tamago324/lir.nvim'
-
   use 'hoob3rt/lualine.nvim'
 
-  use 'romgrk/barbar.nvim'
+  use 'akinsho/nvim-bufferline.lua'
+
+  use "williamboman/mason.nvim"
+
+  use "williamboman/nvim-lsp-installer"
 
   use 'jose-elias-alvarez/null-ls.nvim'
 
@@ -23,7 +25,11 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/nvim-cmp'
 
+  use 'glepnir/lspsaga.nvim' 
   use 'windwp/nvim-autopairs'
+
+  use 'nvim-telescope/telescope.nvim'
+  use 'nvim-telescope/telescope-file-browser.nvim'
 
   use 'L3MON4D3/LuaSnip'
   use {
@@ -36,19 +42,13 @@ return packer.startup(function(use)
     requires = {'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'}
   }
 
-  use 'nvim-telescope/telescope.nvim'
-
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
   use 'lewis6991/gitsigns.nvim'
 
-  use 'kyazdani42/nvim-web-devicons'
-
   use 'folke/tokyonight.nvim'
 
   use 'kyazdani42/nvim-web-devicons'
-
-  use 'nvim-treesitter/nvim-treesitter'
 
   use 'alvan/vim-closetag'
 
