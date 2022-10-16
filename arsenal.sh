@@ -10,7 +10,6 @@ apps=(
   netcat 
   python-pip 
   gnupg
-  zathura-pdf-poppler
   tmux
   golang
   nodejs
@@ -18,6 +17,7 @@ apps=(
   socat
   wget
   make
+  ssh
   jq
 )
 
@@ -50,11 +50,9 @@ function another_tools {
   # Assetfinder
   go install -u github.com/tomnomnom/assetfinder
 
-  # Feroxbuster
-  curl -fSsL https://raw.githubusercontent.com/epi052/feroxbuster/master/install-nix.sh | bash
-
-  # pip install -U scapy
-  # pip install -U pacu
+  python3 -m pip install --upgrade scapy
+  python3 -m pip install --upgrade pacu
+  python3 -m pip install --upgrade pwntools
 }
 
 function setting_configs {
@@ -73,8 +71,8 @@ $HOME/tools/radare2/sys/install.sh
 
 # peco
 # sudo git clone https://github.com/radareorg/radare2 $HOME/tools/radare2 && \
-# $HOME/tools/radare2/sys/install.sh 
-
+# $HOME/tools/radare2/sys/install.sh # # $HOME/tools/radare2/sys/install.sh 
+#
 
 [[ -d /home/$USER/tools ]] && {
   # Nuclei templates
