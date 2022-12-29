@@ -1,1 +1,1 @@
-require("bootstrap")
+load("plugins")

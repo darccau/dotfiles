@@ -19,50 +19,55 @@ apps=(
   make
   ssh
   jq
+  ufw
 )
-
-function another_tools {
 
   # Docker
   curl -fsSL https://get.docker.com | bash
 
-  # Nuclei
+function recon_tools {
+  # nuclei
   go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 
-  # Httpx
+  # katana
+  go install github.com/projectdiscovery/katana/cmd/katana@latest
+
+  # httpx
   go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 
   # notify
   go install -v github.com/projectdiscovery/notify/cmd/notify@latest
   
-  # Gau
+  # gau
   go install -v github.com/lc/gau/v2/cmd/gau@latest
 
-  # Dnsx
+  # asnmap
+  go install github.com/projectdiscovery/asnmap/cmd/asnmap@latest
+
+  # dnsx
   go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 
-  # Ffuf
+  # ffuf
   go install -v github.com/ffuf/ffuf@latest
 
-  # Subfinder
+  # subfinder
   go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 
-  # Assetfinder
+  # assetfinder
   go install -u github.com/tomnomnom/assetfinder
 
-  python3 -m pip install --upgrade scapy
-  python3 -m pip install --upgrade pacu
-  python3 -m pip install --upgrade pwntools
 }
 
-function setting_configs {
-# setting up tcpdump
-groupadd pcap
-usermod -a -G pcap $USER
-sudo chgrp pcap /usr/bin/tcpdump
-sudo chmod 750 /usr/bin/tcpdump
-sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/tcpdump
+python3 -m pip install --upgrade scapy
+python3 -m pip install --upgrade pacu
+python3 -m pip install --upgrade pwntools
 
+function enable_tcpdump_work_as_user {
+  groupadd pcap
+  usermod -a -G pcap $USER
+  sudo chgrp pcap /usr/bin/tcpdump
+  sudo chmod 750 /usr/bin/tcpdump
+  sudo setcap cap_net_raw,cap_net_admin=eip /usr/bin/tcpdump
 }
 
 # radare2
@@ -81,8 +86,10 @@ $HOME/tools/radare2/sys/install.sh
 }
 
 for app in ${apps[@]}; do
-  sudo apt install $app -y
+  sudo dnf install $app -y
 done
 
-install_pentester_tools
-setting_configs
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+#install_pentester_tools
+#setting_configs

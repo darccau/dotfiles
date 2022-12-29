@@ -1,19 +1,26 @@
 local status, telescope = pcall(require, "telescope")
-if (not status) then return end
-local actions = require('telescope.actions')
+if not status then
+  return
+end
+
+local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
 local function telescope_buffer_dir()
-  return vim.fn.expand('%:p:h')
+  return vim.fn.expand("%:p:h")
 end
 
-local fb_actions = require "telescope".extensions.file_browser.actions
+local file_browser_actions = require("telescope").extensions.file_browser.actions
 
-telescope.setup {
+telescope.setup({
   defaults = {
+    file_ignore_patterns = {
+      "node_modules",
+      ".git",
+    },
     mappings = {
       n = {
-        ["q"] = actions.close
+        ["q"] = actions.close,
       },
     },
   },
@@ -25,31 +32,33 @@ telescope.setup {
       mappings = {
         -- your custom insert mode mappings
         ["i"] = {
-          ["<C-w>"] = function() vim.cmd('normal vbd') end,
+          ["<C-w>"] = function()
+            vim.cmd("normal vbd")
+          end,
         },
         ["n"] = {
           -- your custom normal mode mappings
-          ["N"] = fb_actions.create,
-          ["h"] = fb_actions.goto_parent_dir,
+          ["n"] = file_browser_actions.create,
+          ["h"] = file_browser_actions.goto_parent_dir,
+          -- ["l"] = file_browser_actions.toggle_browser,
           ["/"] = function()
-            vim.cmd('startinsert')
-          end
+            vim.cmd("startinsert")
+          end,
         },
       },
     },
   },
-}
+})
 
 telescope.load_extension("file_browser")
 
-vim.keymap.set('n', '<leader>f',
-  function()
-    builtin.find_files({
-      no_ignore = false,
-      hidden = true
-    })
-  end)
-vim.keymap.set('n', '<leader>r', function()
+vim.keymap.set("n", "<leader>f", function()
+  builtin.find_files({
+    no_ignore = false,
+    hidden = true,
+  })
+end)
+vim.keymap.set("n", "<leader>r", function()
   builtin.live_grep()
 end)
 -- vim.keymap.set('n', '\\\\', function()
@@ -73,6 +82,6 @@ vim.keymap.set("n", "sf", function()
     grouped = true,
     previewer = false,
     initial_mode = "normal",
-    layout_config = { height = 40 }
+    layout_config = { height = 40 },
   })
 end)
