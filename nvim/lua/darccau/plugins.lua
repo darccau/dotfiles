@@ -1,4 +1,7 @@
-local packer = require("packer")
+local status, packer = pcall(require, "packer")
+if not status then
+  return
+end
 
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")

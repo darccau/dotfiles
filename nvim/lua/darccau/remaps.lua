@@ -11,10 +11,6 @@ vim.keymap.set("i", ".", ".<c-g>u", opts)
 vim.keymap.set("i", "!", "!<c-g>u", opts)
 vim.keymap.set("i", "?", ",<c-g>u", opts)
 
--- splits
-vim.keymap.set("n", "ss", [[<cmd>split<cr>]], opts)
-vim.keymap.set("n", "sv", [[<cmd>vsplit<cr>]], opts)
-
 -- splits motions
 vim.keymap.set("n", "<Space>", "<C-w>w")
 vim.keymap.set("n", "sh", "<C-w>h", opts)
@@ -32,12 +28,11 @@ vim.keymap.set("n", "<leader>a", [[<cmd>wa!<cr>]], opts)
 vim.keymap.set({ "n", "v" }, "e", "$", opts)
 vim.keymap.set("n", "<tab>", "%", opts)
 vim.keymap.set("n", "Y", "y$", opts)
-vim.keymap.set("n", "dw", 'vb"_d')
 vim.keymap.set("n", "<C-a>", "gg<S-v>G")
-vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>n", [[<cmd>noh<cr>]], opts)
-vim.keymap.set("n", "te", "<cmd>tabedit<return>", opts)
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("n", "te", "<cmd>tabedit<cr>", opts)
+vim.keymap.set("v", "<leader>b", "<cmd>'<,'>!base64 -d<CR>")
+vim.keymap.set("n", "<leader>u", "<cmd>%! sort -u --version-sort<cr>")
 
 -- easify
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
