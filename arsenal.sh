@@ -11,6 +11,7 @@ apps=(
   python-pip 
   gnupg
   tmux
+  fish
   golang
   nodejs
   gdb
@@ -74,7 +75,8 @@ function enable_tcpdump_work_as_user {
 sudo git clone https://github.com/radareorg/radare2 $HOME/tools/radare2 && \
 $HOME/tools/radare2/sys/install.sh 
 
-# peco
+#peco
+
 # sudo git clone https://github.com/radareorg/radare2 $HOME/tools/radare2 && \
 # $HOME/tools/radare2/sys/install.sh # # $HOME/tools/radare2/sys/install.sh 
 #
