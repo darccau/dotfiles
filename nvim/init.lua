@@ -1,1 +1,1 @@
-load("plugins")
+require("darccau.configs")
