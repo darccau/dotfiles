@@ -4,7 +4,6 @@ local options = {
   cursorline = true,
   wildmenu = true,
   virtualedit = "all",
-  title = true,
   wrap = false,
   ignorecase = true,
   list = true,
