@@ -1,28 +1,22 @@
-local setup = function()
-  require("Comment").setup(
-  {
-    padding = true,
-    sticky = true,
-    ignore = nil,
-    toggler = {
-      line = ";;",
-    },
-    opleader = {
-      line = ";",
-    },
-    mappings = {
-      basic = true,
-      extra = true,
-      extended = false,
-    },
-    pre_hook = nil,
-    post_hook = nil,
-  })
-end
-
 return {
-    -- event = "VeryLazy",
-    "numToStr/Comment.nvim",
-    -- lazy = false,
-    config = setup,
+  { "JoosepAlviste/nvim-ts-context-commentstring" },
+  {
+    "echasnovski/mini.comment",
+    event = "VeryLazy",
+    opts = {
+      mappings = {
+        comment = ";;",
+        comment_line = ";;",
+        textobject = ";;",
+      },
+      hooks = {
+        pre = function()
+          require("ts_context_commentstring.internal").update_commentstring({})
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("mini.comment").setup(opts)
+    end,
+  },
 }

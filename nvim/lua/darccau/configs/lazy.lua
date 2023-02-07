@@ -12,13 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup("darccau.plugins", {
-  defaults = { version = "*" },
+  defaults = { version = false },
   performance = {
     rtp = {
       disabled_plugins = {
         "gzip",
         "matchit",
-        "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",

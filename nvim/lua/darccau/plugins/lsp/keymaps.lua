@@ -4,12 +4,15 @@ function M.on_attach(_, bufnr)
   local tb = require("telescope.builtin")
   local opts = { silent = true, noremap = true, buffer = bufnr }
   local mappings = {
+    { "n", "<leader>li", vim.cmd.LspInfo, opts },
+    { "n", "<leader>ls", vim.cmd.LspStop, opts },
+    { "n", "<leader>lr", vim.cmd.LspRestart, opts },
     { "n", "gD", vim.lsp.buf.declaration, opts },
     { "n", "gd", tb.lsp_definitions, opts },
     { "n", "gr", vim.lsp.buf.rename, opts },
     { "n", "<leader>ca", vim.lsp.buf.code_action, opts },
     { "n", "<leader>gR", tb.lsp_references, opts },
-    { "n", "<leader>x", require("darccau.plugins.lsp.format").format, opts },
+    { "n", "<leader>F", require("darccau.plugins.lsp.format").format, opts },
     { "i", "<C-x>", vim.lsp.buf.signature_help, opts },
     { "n", "[e", vim.diagnostic.goto_next, opts },
     { "n", "]e", vim.diagnostic.goto_prev, opts },
