@@ -28,36 +28,33 @@ set statusbar-home-tilde  false
 set statusbar-basename    false
 set selection-clipboard clipboard
 
-set default-bg "#161821"
 
-set recolor-darkcolor "#aaaaaa"
-set recolor-lightcolor "#161821"
+set notification-error-bg       "#151627"
+set notification-error-fg       "#a2a3aa"
+set notification-warning-bg     "#151627"
+set notification-warning-fg     "#a2a3aa"
+set notification-bg             "#151627"
+set notification-fg             "#a2a3aa"
 
-set inputbar-bg "#161821"
-set inputbar-fg "#aaaaaa"
+set index-bg                    "#151627"
+set index-fg                    "#a2a3aa"
+set index-active-bg             "#c6797e"
+set index-active-fg             "#a2a3aa"
 
-set notification-bg "#161821"
-set notification-fg "#aaaaaa"
+set inputbar-bg                 "#151627"
+set inputbar-fg                 "#a2a3aa"
 
-set notification-error-bg "#161821"
-set notification-error-fg "#e98989"
+set statusbar-bg                "#151627"
+set statusbar-fg                "#a2a3aa"
 
-set notification-warning-bg "#b54848"
-set notification-warning-fg "#aaaaaa"
+set highlight-color             "#c6797e"
+set highlight-active-color      "#c6797e"
 
-set statusbar-bg "#161821"
-set statusbar-fg "#aaaaaa"
+set default-bg                  "#151627"
+set default-fg                  "#a2a3aa"
+set recolor-lightcolor          "#151627"
+set recolor-darkcolor           "#a2a3aa"
 
-set index-bg "#161821"
-set index-fg "#aaaaaa"
-
-set index-active-bg "#aaaaaa"
-set index-active-fg "#161821"
-
-set render-loading-bg "#161821"
-set render-loading-fg "#aaaaaa"
-
-set completion-fg "#cccccc"
-set completion-bg "#161821"
-set completion-highlight-bg "#84a0c6"
+set statusbar-bg                "#151627"
+set statusbar-fg                "#aaaaaa"
 
