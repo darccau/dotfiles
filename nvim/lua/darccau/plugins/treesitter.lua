@@ -10,6 +10,7 @@ return {
         "python",
         "lua",
         "yaml",
+        "toml",
         "json",
         "javascript",
         "bash",

@@ -25,8 +25,6 @@ return {
         "black",
         "flake8",
         "prettier",
-        -- "shfmt",
-        -- "shellcheck",
         "yamllint",
       }
       for _, f in pairs(tools) do
@@ -119,13 +117,11 @@ return {
       local nls = require("null-ls")
       local formatting = nls.builtins.formatting
       local diagnostics = nls.builtins.diagnostics
-      -- local actions = nls.builtins.code_actions
       return {
         sources = {
           formatting.prettier.with({
             filetypes = { "json", "markdown", "toml" },
           }),
-          -- formatting.shfmt,
           formatting.stylua.with({
             extra_args = function(_)
               -- using default .stylua.toml file or project's one
@@ -143,13 +139,12 @@ return {
           formatting.black,
           formatting.terraform_fmt,
           formatting.gofmt,
+          formatting.goimports,
           formatting.pg_format,
           diagnostics.yamllint.with({
             extra_args = { "-d", "{extends: relaxed, rules: {line-length: {max: 200}}}" },
           }),
-          -- diagnostics.shellcheck,
           diagnostics.flake8,
-          -- actions.shellcheck,
         },
       }
     end,

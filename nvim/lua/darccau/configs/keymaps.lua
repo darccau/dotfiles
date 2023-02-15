@@ -1,52 +1,47 @@
 -- global keymaps
-local opts = { remap = false, silent = true }
+local options = { remap = false, silent = true }
 local mappings = {
-  -- Deletion breakpoints
-  { "i", ",", ",<c-g>u", opts },
-  { "i", ".", ".<c-g>u", opts },
-  { "i", "!", "!<c-g>u", opts },
-  { "i", "?", ",<c-g>u", opts },
 
   -- splits motions
-  { "n", "ss", "<cmd>split<cr>", opts },
-  { "n", "sv", "<cmd>vsplit<cr>", opts },
+  { "n", "ss", "<cmd>split<enter>", options },
+  { "n", "sv", "<cmd>vsplit<enter>", options },
 
   -- splits motions
-  { "n", "<Space>", "<C-w>w" },
-  { "n", "sh", "<C-w>h", opts },
-  { "n", "sj", "<C-w>j", opts },
-  { "n", "sk", "<C-w>k", opts },
-  { "n", "sl", "<C-w>l", opts },
+  { "n", "<Space>", "<C-w>w", options },
+  { "n", "sh", "<C-w>h", options },
+  { "n", "sj", "<C-w>j", options },
+  { "n", "sk", "<C-w>k", options },
+  { "n", "sl", "<C-w>l", options },
 
   -- common operations
-  { "n", "<leader>w", [[<cmd>up<cr>]], opts },
-  { "n", "<leader>q", [[<cmd>q!<cr>]], opts },
-  { "n", "<leader>d", [[<cmd>bd<cr>]], opts },
-  { "n", "<leader>a", [[<cmd>wa!<cr>]], opts },
+  { "n", "<leader>w", "<cmd>up<enter>", options },
+  { "n", "<leader>q", "<cmd>q!<enter>", options },
+  { "n", "<leader>d", "<cmd>bd<enter>", options },
+  { "n", "<leader>a", "<cmd>wa!<enter>", options },
 
   -- real gangsta
-  { { "n", "v" }, "e", "$", opts },
-  { "n", "<tab>", "%", opts },
-  { "n", "Y", "y$", opts },
+  { { "n", "v" }, "e", "$", options },
+  { "n", "\\", "<cmd>Git<enter>", options },
+  { "n", "<tab>", "%", options },
+  { "n", "Y", "y$", options },
   { "n", "<C-a>", "gg<S-v>G" },
-  { "n", "<leader>n", [[<cmd>noh<cr>]], opts },
-  { "n", "te", "<cmd>tabedit<cr>", opts },
-  { "v", "<leader>b", "<cmd>'<,'>!base64 -d<CR>", opts },
-  { "n", "<leader>u", "<cmd>%! sort -u --version-sort<cr>", options },
+  { "n", "<leader>n", "<cmd>noh<enter>", options },
+  { "n", "te", "<cmd>tabedit<enter>", options },
+  { "n", "<leader>u", "<cmd>%! sort -u --version-sort<enter>", options },
 
   -- easify
-  { "n", "<C-d>", "<C-d>zz", opts },
-  { "n", "<C-u>", "<C-u>zz", opts },
-  { "n", "n", "nzzzv", opts },
-  { "n", "N", "Nzzzv", opts },
-  { "n", "J", "mzJ`z", opts },
-  { "n", "U", "<C-r>", opts },
+  { "n", "<C-d>", "<C-d>zz", options },
+  { "n", "<C-u>", "<C-u>zz", options },
+  { "n", "n", "nzzzv", options },
+  { "n", "N", "Nzzzv", options },
+  { "n", "J", "mzJ`z", options },
+  { "n", "U", "<C-r>", options },
 
-  -- resize
-  -- {"n", "<C-h>", "<C-w><", opts},
-  -- {"n", "<C-l>", "<C-w>>", opts},
-  -- {"n", "<C-k>", "<C-w>+", opts},
-  -- {"n", "<C-j>", "<C-w>-", opts},
+  -- Deletion breakpoints
+  { "i", ",", ",<c-g>u", options },
+  { "i", ".", ".<c-g>u", options },
+  { "i", "!", "!<c-g>u", options },
+  { "i", "?", ",<c-g>u", options },
 }
 
 for _, map in pairs(mappings) do
