@@ -8,19 +8,26 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-nvim-lua",
-      'hrsh7th/cmp-cmdline',
+      "hrsh7th/cmp-cmdline",
       "petertriho/cmp-git",
       "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
     },
     opts = function()
       -- nvim-cmp configs
       local cmp = require("cmp")
+      local luasnip = require("luasnip")
       local compare = require("cmp.config.compare")
       local lspkind = require("lspkind")
 
       lspkind.init()
 
       return {
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
@@ -92,6 +99,7 @@ return {
     config = function(_, opts)
       require("cmp").setup(opts)
       require("cmp_git").setup()
+      -- require("cmp-cmdline").setup()
     end,
   },
 }

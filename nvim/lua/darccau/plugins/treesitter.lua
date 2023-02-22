@@ -11,6 +11,7 @@ return {
         "lua",
         "yaml",
         "toml",
+        "terraform",
         "json",
         "javascript",
         "bash",

@@ -65,8 +65,8 @@ return {
       end, { nargs = 0 })
 
       -- setup servers
-      local servers = {
-        sumneko_lua = {
+            local servers = {
+        lua_ls = {
           settings = {
             Lua = {
               workspace = {
@@ -140,7 +140,6 @@ return {
           formatting.terraform_fmt,
           formatting.gofmt,
           formatting.goimports,
-          formatting.pg_format,
           diagnostics.yamllint.with({
             extra_args = { "-d", "{extends: relaxed, rules: {line-length: {max: 200}}}" },
           }),
