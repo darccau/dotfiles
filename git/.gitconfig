@@ -1,7 +1,7 @@
 
 [github]
 	user = darccau
-  email = darccau@protonmail.com
+  email = darccau@gmail.com
 
 [core]
   excludesfile = ~/.gitignore
@@ -50,10 +50,6 @@
 [diff]
   tool = nvimdiff
 
-[difftool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
-	path = 
-
 [mergetool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
@@ -64,3 +60,8 @@
 	required = true
 	process = git-lfs filter-process
 
+[user]
+	email = darccau@protonmail.com
+	name = darccau
+[credential]
+	helper = store
