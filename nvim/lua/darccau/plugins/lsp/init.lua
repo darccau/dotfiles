@@ -65,7 +65,7 @@ return {
       end, { nargs = 0 })
 
       -- setup servers
-            local servers = {
+      local servers = {
         lua_ls = {
           settings = {
             Lua = {
@@ -92,7 +92,6 @@ return {
         bashls = {},
         yamlls = {},
         jsonls = {},
-        sqls = {},
         terraformls = {},
         gopls = {},
         dockerls = {},
@@ -139,6 +138,7 @@ return {
           formatting.black,
           formatting.terraform_fmt,
           formatting.gofmt,
+          formatting.golangci_lint,
           formatting.goimports,
           diagnostics.yamllint.with({
             extra_args = { "-d", "{extends: relaxed, rules: {line-length: {max: 200}}}" },
