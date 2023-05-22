@@ -1,17 +1,13 @@
-
-
 [github]
-  user = 2nthony
+  user = darccau
 
 [user]
 	user = darccau
   email = darccau@gmail.com
+  signingkey = 896653FF5E0505AD
 
 [hub]
   protocol = https
-
-[http "https://github.com"]
-  proxy = http://127.0.0.1:1337
 
 [core]
   excludesfile = ~/.gitignore
@@ -72,7 +68,6 @@
  
 [gpg]
   program = gpg
-  signingkey = 896653FF5E0505AD
 
 [credential]
 	helper = store
