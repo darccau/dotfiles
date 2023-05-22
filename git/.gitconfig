@@ -1,15 +1,21 @@
 
+
 [github]
+  user = 2nthony
+
+[user]
 	user = darccau
   email = darccau@gmail.com
+
+[hub]
+  protocol = https
+
+[http "https://github.com"]
+  proxy = http://127.0.0.1:1337
 
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
-  ignorecase = false
-
-[push]
-  default = simple
 
 [color]
   status = auto
@@ -22,12 +28,12 @@
 [alias]
   a = "!git status --short | peco | awk '{print $2}' | xargs git add"
   d = diff
+  s = status --short 
   co = checkout
   ci = commit
   ca = commit -a
   ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
   pl = "!git pull origin $(git rev-parse --abbrev-ref HEAD)"
-  s = status 
   br = branch
   ba = branch -a
   bm = branch --merged
@@ -44,15 +50,16 @@
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-[hub]
-  protocol = https
-
 [diff]
   tool = nvimdiff
 
+[difftool "nvimdiff"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+  path = 
+
 [mergetool "nvimdiff"]
-	cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -60,8 +67,12 @@
 	required = true
 	process = git-lfs filter-process
 
-[user]
-	email = darccau@protonmail.com
-	name = darccau
+[init]
+  defaultBranch = main
+ 
+[gpg]
+  program = gpg
+  signingkey = 896653FF5E0505AD
+
 [credential]
 	helper = store
