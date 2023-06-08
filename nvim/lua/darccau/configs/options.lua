@@ -1,6 +1,9 @@
 -- editor options
 local options = {
   mouse = "a",
+  backup = false,
+  --  backupskip = { "/tmp/*", "/private/tmp/*" },
+  breakindent = true,
   number = true,
   cursorline = true,
   wildmenu = true,
@@ -25,6 +28,10 @@ local options = {
   swapfile = false,
   expandtab = true,
   foldlevel = 99,
+  --  diffopt = "filler,iwhite,internal,linematch:60,algorithm:patience",
+  winblend = 0,
+  pumblend = 5,
+  pumheight = 10,
 }
 
 for k, v in pairs(options) do

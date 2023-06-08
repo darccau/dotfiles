@@ -5,9 +5,9 @@ return {
     event = "VeryLazy",
     opts = {
       mappings = {
-        comment = ";;",
-        comment_line = ";;",
-        textobject = ";;",
+        comment = ";c",
+        comment_line = ";c",
+        textobject = ";c",
       },
       hooks = {
         pre = function()

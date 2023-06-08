@@ -23,9 +23,8 @@ return {
       local tools = {
         "stylua",
         "black",
-        "flake8",
+        "ruff",
         "prettier",
-        "yamllint",
       }
       for _, f in pairs(tools) do
         local pkg = require("mason-registry").get_package(f)
@@ -88,13 +87,8 @@ return {
             },
           },
         },
-        tsserver = {},
-        bashls = {},
-        yamlls = {},
-        jsonls = {},
         terraformls = {},
         gopls = {},
-        dockerls = {},
       }
 
       require("mason-lspconfig").setup({ ensure_installed = vim.tbl_keys(servers) })
@@ -116,11 +110,13 @@ return {
       local nls = require("null-ls")
       local formatting = nls.builtins.formatting
       local diagnostics = nls.builtins.diagnostics
+      local actions = nls.builtins.code_actions
       return {
         sources = {
           formatting.prettier.with({
             filetypes = { "json", "markdown", "toml" },
           }),
+          formatting.shfmt,
           formatting.stylua.with({
             extra_args = function(_)
               -- using default .stylua.toml file or project's one
@@ -136,14 +132,16 @@ return {
             end,
           }),
           formatting.black,
+          formatting.isort,
           formatting.terraform_fmt,
           formatting.gofmt,
-          formatting.golangci_lint,
-          formatting.goimports,
+          formatting.pg_format,
           diagnostics.yamllint.with({
             extra_args = { "-d", "{extends: relaxed, rules: {line-length: {max: 200}}}" },
           }),
-          diagnostics.flake8,
+          diagnostics.shellcheck,
+          diagnostics.ruff,
+          actions.shellcheck,
         },
       }
     end,

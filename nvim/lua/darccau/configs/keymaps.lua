@@ -7,7 +7,7 @@ local mappings = {
   { "n", "sv", "<cmd>vsplit<enter>", options },
 
   -- splits motions
-  { "n", "<Space>", "<C-w>w", options },
+  { "n", "<space>", "<C-w>w", options },
   { "n", "sh", "<C-w>h", options },
   { "n", "sj", "<C-w>j", options },
   { "n", "sk", "<C-w>k", options },
