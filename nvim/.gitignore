@@ -1,2 +1,11 @@
-plugin/packer_compiled.lua
-.luarc.json
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+
+# local plugins
+local.lua

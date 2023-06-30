@@ -1,4 +1,2 @@
-require("darccau.configs.autocmds")
-require("darccau.configs.options")
-require("darccau.configs.keymaps")
-require("darccau.configs.lazy")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
