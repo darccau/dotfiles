@@ -30,7 +30,6 @@ return {
       },
     },
     dependencies = {
-      -- https://github.com/windwp/nvim-ts-autotag
       {
         "windwp/nvim-ts-autotag",
         opts = {

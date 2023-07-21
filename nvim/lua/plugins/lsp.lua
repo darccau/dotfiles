@@ -1,30 +1,26 @@
--- https://www.lazyvim.org/plugins/lsp#nvim-lspconfig
-
-vim.lsp.set_log_level(vim.log.levels.ERROR)
-
 return {
-  { import = "lazyvim.plugins.extras.lang.typescript" },
-  { import = "lazyvim.plugins.extras.lang.json" },
-  { import = "lazyvim.plugins.extras.lang.tailwind" },
-  { import = "plugins.extras.linting.eslint" },
-  { import = "plugins.extras.lang.vue" },
+--  { import = "lazyvim.plugins.extras.lang.typescript" },
+--  { import = "lazyvim.plugins.extras.lang.json" },
+--  { import = "lazyvim.plugins.extras.lang.tailwind" },
+--  { import = "plugins.extras.linting.eslint" },
+--  { import = "plugins.extras.lang.vue" },
 
-  -- lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    lazy = true,
-    event = { "VeryLazy" },
-    opts = {
-      diagnostics = {
-        virtual_text = {
-          source = false,
-        },
-      },
-      servers = {
-        unocss = {},
-      },
-    },
-  },
+--  -- lspconfig
+--  {
+--    "neovim/nvim-lspconfig",
+--    lazy = true,
+--    event = { "VeryLazy" },
+--    opts = {
+--      diagnostics = {
+--        virtual_text = {
+--          source = false,
+--        },
+--      },
+--      servers = {
+--        unocss = {},
+--      },
+--    },
+--  },
 
   -- lspsaga
   {

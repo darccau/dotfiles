@@ -1,5 +1,3 @@
-local actions = require("telescope.actions")
-
 local grep_picker = {
   preview = true,
   only_sort_text = true, -- don't include the filename in the search results
@@ -14,23 +12,11 @@ return {
       theme = "dropdown",
       defaults = {
         preview = false,
-        mappings = {
-          i = {
-            ["<Tab>"] = actions.move_selection_next,
-            ["<S-Tab>"] = actions.move_selection_previous,
-          },
-          n = {
-            ["<Tab>"] = actions.move_selection_next,
-            ["<S-Tab>"] = actions.move_selection_previous,
-          },
-        },
         file_ignore_patterns = {
           "node_modules/",
           ".git/",
-          -- rust
           "**/debug/",
           "target/release/",
-          -- yarn
           ".yarn/*",
         },
       },
@@ -44,13 +30,6 @@ return {
         },
         live_grep = grep_picker,
         grep_string = grep_picker,
-        buffers = {
-          mappings = {
-            i = {
-              ["<C-d>"] = actions.delete_buffer,
-            },
-          },
-        },
       },
     },
     config = function(_, opts)
@@ -78,6 +57,7 @@ return {
     end,
     dependencies = {
       {
+        "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope-fzf-native.nvim",
         enabled = vim.fn.executable("fzf"),
         build = "make",
@@ -85,6 +65,17 @@ return {
           require("telescope").load_extension("fzf")
         end,
       },
+    },
+    keys = {
+      { "<leader>f", ":Telescope find_files<cr>", desc = "Find Files" },
+--      { "<leader>fF", false },
+--      { "<leader>gf", Util.telescope("files", { cwd = false }), desc = "Git Files" },
+--      { "<leader>sg", Util.telescope("live_grep", { cwd = false }), desc = "Grep" },
+--      { "<leader>/", "<leader>sg", remap = true, desc = "Grep" },
+--      { "<leader>sG", false },
+--      { "<leader>sw", Util.telescope("grep_string", { cwd = false }), desc = "Word" },
+--      { "<leader>sW", false },
+--      { "<leader>fR", false },
     },
   },
 }
