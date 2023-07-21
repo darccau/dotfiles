@@ -10,8 +10,9 @@ local opts = { silent = true }
  vim.keymap.set("n", "sv", "<c-w>v", opts)
  vim.keymap.set("n", "<tab>", "%", opts)
  vim.keymap.set("n", "<leader>n", ":noh<enter>", opts)
+ vim.keymap.set("n", "\\", ":LazyGit<enter>", opts)
 
-vim.keymap.set("n", "<leader>f", ":Telescope find_files<cr>", opts)
+vim.keymap.set("n", "<leader>f", ":Telescope find_files<enter>", opts)
 --vim.keymap.set("n", "<leader>fF", false },
 --vim.keymap.set("n", "<leader>gf", Util.telescope("files", { cwd = false }), desc = "Git Files" },
 --vim.keymap.set("n", "<leader>sg", Util.telescope("live_grep", { cwd = false }), desc = "Grep" },

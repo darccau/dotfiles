@@ -7,13 +7,23 @@ return {
       current_line_blame = true,
     },
   },
-
+  {
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     lazy = true,
     cmd = "Neotree",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
     keys = {
-      { "<leader>l", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "<leader>l", "<cmd>Neotree toggle<enter>", desc = "NeoTree" },
     },
     opts = {
       filesystem = {
@@ -39,8 +49,8 @@ return {
           ["<C-v>"] = "open_vsplit",
           ["<C-f>"] = "clear_filter",
           ["g?"] = "show_help",
-          ["/"] = "", -- default search down
-          ["?"] = "", --default search above
+          ["/"] = "", 
+          ["?"] = "",
         },
       },
     },
