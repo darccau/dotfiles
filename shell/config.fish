@@ -11,10 +11,10 @@ alias g='git'
 alias vi='nvim'
 alias j='z'
 alias tree='exa --tree'
-alias ls='exa -lbF --git'
-alias llm='exa -lbGd --git --sort=modified'
-alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'
-alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale'
+alias ls='exa -lbF --git' # list, size, type, git
+alias llm='exa -lbGd --git --sort=modified' # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale' # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
 
 # Environment variables
 set -gx EDITOR nvim
@@ -26,8 +26,6 @@ fish_add_path /home/darccau/.local/bin
 
 fish_add_path /usr/local/go/bin
 fish_add_path /home/darccau/.cargo/bin
-
-
 
 function create_container
     set -l container_name $argv[1]
