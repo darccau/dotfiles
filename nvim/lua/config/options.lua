@@ -1,54 +1,163 @@
--- This file is automatically loaded by plugins.core
+local opt = vim.opt
+local g = vim.g
+
 vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"
 
-local opt = vim.opt
+-- Cursor highlighting
+opt.cursorline = true
 
-opt.autowrite = true -- Enable auto write
-opt.clipboard = "unnamedplus" -- Sync with system clipboard
-opt.completeopt = "menu,menuone,noselect"
-opt.conceallevel = 3 -- Hide * markup for bold and italic
-opt.cursorline = true -- Enable highlighting of the current line
-opt.expandtab = true -- Use spaces instead of tabs
-opt.formatoptions = "jcroqlnt" -- tcqj
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
-opt.ignorecase = true -- Ignore case
-opt.inccommand = "nosplit" -- preview incremental substitute
-opt.laststatus = 0
-opt.list = true -- Show some invisible characters (tabs...
-opt.mouse = "a" -- Enable mouse mode
-opt.number = true -- Print line number
-opt.pumblend = 10 -- Popup blend
-opt.pumheight = 10 -- Maximum number of entries in a popup
-opt.relativenumber = true -- Relative line numbers
-opt.scrolloff = 4 -- Lines of context
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
-opt.shiftround = true -- Round indent
-opt.shiftwidth = 2 -- Size of an indent
-opt.shortmess:append({ W = true, I = true, c = true })
-opt.showmode = false -- Dont show mode since we have a statusline
-opt.sidescrolloff = 8 -- Columns of context
-opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
-opt.smartcase = true -- Don't ignore case with capitals
-opt.smartindent = true -- Insert indents automatically
-opt.spelllang = { "en" }
-opt.splitbelow = true -- Put new windows below current
-opt.splitright = true -- Put new windows right of current
-opt.tabstop = 2 -- Number of spaces tabs count for
-opt.termguicolors = true -- True color support
-opt.timeoutlen = 300
+-- Pane splitting
+opt.splitright = true
+opt.splitbelow = true
+
+-- Searching
+opt.smartcase = true
+opt.hlsearch = true
+opt.ignorecase = true
+opt.incsearch = true
+
+-- Auto indent
+opt.autoindent = true
+
+-- Make terminal support truecolor
+opt.termguicolors = true
+
+-- Make neovim use the system clipboard
+opt.clipboard = "unnamedplus"
+
+-- Disable old vim status
+opt.showmode = false
+
+-- Set relative line numbers
+opt.number = true
+opt.numberwidth = 2
+
+-- Tab config
+opt.expandtab = true
+opt.smarttab = true
+opt.smartindent = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.shiftround = true
+
+-- Code folding
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldcolumn = "1"
+
+-- Decrease update time
+opt.updatetime = 200
+
+-- Disable swapfile
+opt.swapfile = false
+
+-- Enable persistent undo
 opt.undofile = true
-opt.undolevels = 10000
-opt.updatetime = 200 -- Save swap file and trigger CursorHold
-opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.winminwidth = 5 -- Minimum window width
-opt.wrap = false -- Disable line wrap
 
-if vim.fn.has("nvim-0.9.0") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append({ C = true })
-end
+-- Always show tabline
+opt.showtabline = 0
 
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+-- Disable mouse support
+opt.mouse = "a"
+
+-- Scrolloff
+opt.scrolloff = 7
+opt.sidescrolloff = 7
+
+-- Disable wrapping
+opt.wrap = false
+
+-- Enable list
+opt.list = true
+
+-- Fill chars
+opt.fillchars = { eob = " " }
+
+-- Enable lazy redraw for performance
+opt.lazyredraw = true
+
+-- Have the statusline only display at the bottom
+opt.laststatus = 3
+
+-- Confirm to save changed before exiting the modified buffer
+opt.confirm = true
+
+-- Hide * markup for bold and italic
+opt.conceallevel = 3
+
+-- Hide the command line unless needed
+opt.cmdheight = 0
+
+-- Hide statusline
+-- opt.laststatus = 0
+
+-- Use ripgrep as the grep program for neovim
+opt.grepprg = "rg --vimgrep"
+
+-- Set the grep format
+opt.grepformat = "%f:%l:%c:%m"
+
+-- shortmess options
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
+
+-- Enable autowrite
+opt.autowrite = true
+
+-- Keep cursor to the same screen line when opening a split
+opt.splitkeep = "screen"
+
+-- Set completion options
+opt.completeopt = "menu,menuone,noselect,noinsert"
+
+-- Set key timeout to 500ms
+opt.timeout = true
+opt.timeoutlen = 500
+
+-- Window config
+opt.winwidth = 10
+opt.winminwidth = 10
+opt.equalalways = false
+
+-- Always show the signcolumn
+opt.signcolumn = "yes"
+
+-- Formatting options
+opt.formatoptions = "jcroqlnt"
+
+-- Set diagnostic config for lsp_lines.nvim
+vim.diagnostic.config({
+  virtual_text = false,
+  virtual_lines = { highlight_whole_line = false },
+})
+
+-- Disable certain builtins
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
+g.loaded_netrwSettings = 1
+g.loaded_netrwFileHandlers = 1
+g.loaded_gzip = 1
+g.loaded_zip = 1
+g.loaded_zipPlugin = 1
+g.loaded_tar = 1
+g.loaded_tarPlugin = 1
+g.loaded_vimball = 1
+g.loaded_vimballPlugin = 1
+g.loaded_2html_plugin = 1
+g.loaded_logipat = 1
+g.loaded_getscript = 1
+g.loaded_getscriptPlugin = 1
+g.loaded_tutor_mode_plugin = 1
+g.loaded_fzf = 1
+
+-- Disable provider warnings in the healthcheck
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_python3_provider = 0
+
+-- Set matchparen options for vim-matchup
+g.matchup_matchparen_offscreen = { method = "status_manual " }
+
+-- Work async for vim-matchup
+g.matchup_matchparen_deferred = 1
