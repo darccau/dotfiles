@@ -152,15 +152,6 @@ return {
             ["[["] = "@function.outer",
           },
         },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>ps"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<leader>pS"] = "@parameter.inner",
-          },
-        },
       },
     },
     config = function(_, opts)
@@ -188,28 +179,28 @@ return {
     },
   },
 
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      char = "▏",
-      context_char = "▏",
-      use_treesitter = true,
-      show_first_indent_level = true,
-      show_trailing_blankline_indent = false,
-      show_current_context = true,
-      show_current_context_start = true,
-      filetype_exclude = {
-        "help",
-        "dashboard",
-        "Trouble",
-        "neogitstatus",
-        "mason",
-        "toggleterm",
-        "lazy",
-        "neo-tree",
-      },
-    },
-  },
+  --  {
+  --    "lukas-reineke/indent-blankline.nvim",
+  --    dependencies = "nvim-treesitter/nvim-treesitter",
+  --    event = { "BufReadPost", "BufNewFile" },
+  --    opts = {
+  --      char = "▏",
+  --      context_char = "▏",
+  --      use_treesitter = true,
+  --      show_first_indent_level = true,
+  --      show_trailing_blankline_indent = false,
+  --      show_current_context = true,
+  --      show_current_context_start = true,
+  --      filetype_exclude = {
+  --        "help",
+  --        "dashboard",
+  --        "Trouble",
+  --        "neogitstatus",
+  --        "mason",
+  --        "toggleterm",
+  --        "lazy",
+  --        "neo-tree",
+  --      },
+  --    },
+  --  },
 }
