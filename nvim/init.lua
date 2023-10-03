@@ -1,7 +1,5 @@
--- bootstrap lazy.nvim, 
+-- bootstrap configurations
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-require("config.lazy")
-
-vim.cmd[[colorscheme tokyonight]]
+require("config.bootstrap")
