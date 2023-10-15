@@ -8,15 +8,40 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     keys = {
-      { "gp", ":Lspsaga peek_definition<cr>", desc = "Peek definition" },
-      { "gP", ":Lspsaga peek_type_definition<cr>", desc = "Peek type definition" },
-      -- { "<c-j>", ":Lspsaga diagnostic_jump_next<cr>", desc = "Next Diagnostic" },
-      { "<leader>ci", ":Lspsaga incoming_calls<cr>", desc = "Incoming calls" },
-      { "<leader>co", ":Lspsaga outgoing_calls<cr>", desc = "Outgoing calls" },
-      { "<leader>ca", ":Lspsaga code_action<cr>", desc = "Code action", mode = { "n", "v" } },
+      {
+        "gi",
+        "<cmd>Lspsaga incoming_calls<cr>",
+        "Show incoming calls",
+      },
+      {
+        "go",
+        "<cmd>Lspsaga outgoing_calls<cr>",
+        "Show outgoing calls",
+      },
+      {
+        "C-]",
+        "<cmd>Lspsaga peek_definition<cr>",
+        desc = "Preview LSP definition",
+      },
+      {
+        "C-}",
+        "<cmd>Lspsaga peek_type_definition<cr>",
+        "Go to type definition",
+      },
+      {
+        "gd",
+        "<cmd>Lspsaga goto_definition<cr>",
+        desc = "Go to definition",
+      },
+      {
+        "K",
+        "<cmd>Lspsaga hover_doc<cr>",
+        desc = "Show documentation",
+      },
     },
     opts = {
       ui = {
+        border = "rounded",
         title = false,
       },
       outline = {
@@ -40,8 +65,7 @@ return {
         tabe = "<C-t>",
       },
       lightbulb = {
-        enable = false,
-        enable_in_insert = false,
+        sign = false,
       },
       symbol_in_winbar = {
         enable = false,
@@ -93,7 +117,6 @@ return {
             "stylua",
             "black",
             "terraform_fmt",
-            "mdformat",
             "prettier",
             "golangci-lint",
             "gofmt",
@@ -101,58 +124,13 @@ return {
         },
       },
     },
-    keys = {
-      {
-        "gd",
-        function()
-          return require("telescope.builtin").lsp_definitions()
-        end,
-        desc = "Goto Definition",
-      },
-      {
-        "gr",
-        function()
-          return require("telescope.builtin").lsp_references()
-        end,
-        desc = "References",
-      },
-      {
-        "gD",
-        vim.lsp.buf.declaration,
-        desc = "Goto Declaration",
-      },
-      {
-        "gI",
-        function()
-          return require("telescope.builtin").lsp_implementations()
-        end,
-        desc = "Goto Implementation",
-      },
-      {
-        "gy",
-        function()
-          return require("telescope.builtin").lsp_type_definitions()
-        end,
-        desc = "Goto T[y]pe Definition",
-      },
-      {
-        "K",
-        vim.lsp.buf.hover,
-        desc = "Hover",
-      },
-      {
-        "gK",
-        vim.lsp.buf.signature_help,
-        desc = "Signature Help",
-      },
-    },
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local lspconfig = require("lspconfig")
       -- Load neodev.nvim before loading everything else
       require("neodev").setup()
-      lspconfig.clangd.setup({ capabilities = { offsetEncoding = { "utf-16" } } }) -- Fix clangd offset encoding
       lspconfig.lua_ls.setup({})
+      lspconfig.tsserver.setup({})
       lspconfig.gopls.setup({})
       lspconfig.pyright.setup({})
       lspconfig.terraformls.setup({})

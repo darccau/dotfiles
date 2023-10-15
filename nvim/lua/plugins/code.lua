@@ -46,32 +46,14 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<tab>"] = cmp.config.disable,
-          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-e>"] = cmp.mapping.close(),
-          ["<C-y>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-          }, { "i", "c" }),
-          ["<C-n>"] = {
-            i = cmp.mapping.select_next_item(),
-          },
-          ["<C-p>"] = {
-            i = cmp.mapping.select_prev_item(),
-          },
-          ["<C-Space>"] = cmp.mapping({
-            i = cmp.mapping.complete(),
-            c = function(_)
-              if cmp.visible() then
-                if not cmp.confirm({ select = true }) then
-                  return
-                end
-              else
-                cmp.complete()
-              end
-            end,
-          }),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },

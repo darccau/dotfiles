@@ -1,15 +1,25 @@
-local opts = { silent = true }
-vim.keymap.set("n", "<leader>q", ":q<enter>", opts)
-vim.keymap.set("n", "<leader>w", ":up<enter>", opts)
-vim.keymap.set("n", "<leader>a", ":wa<enter>", opts)
-vim.keymap.set("n", "sh", "<c-w>h", opts)
-vim.keymap.set("n", "e", "<end>", opts)
-vim.keymap.set("n", "sj", "<c-w>j", opts)
-vim.keymap.set("n", "sk", "<c-w>k", opts)
-vim.keymap.set("n", "sl", "<c-w>l", opts)
-vim.keymap.set("n", "ss", "<c-w>s", opts)
-vim.keymap.set("n", "sv", "<c-w>v", opts)
-vim.keymap.set("n", "<tab>", "%", opts)
-vim.keymap.set("n", "<leader>n", ":noh<enter>", opts)
-vim.keymap.set("n", "\\", ":LazyGit<enter>", opts)
-vim.keymap.set("n", "<leader>f", ":Telescope find_files<enter>", opts)
+local function map(mode, lhs, rhs, desc, opts)
+  local options = { noremap = true, silent = true, desc = desc }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+
+  vim.keymap.set(mode, lhs, rhs, options)
+end
+
+map("n", "<leader>q", ":q<enter>")
+map("n", "<leader>w", ":up<enter>")
+map("n", "<leader>a", ":wa<enter>")
+map("n", "sh", "<c-w>h")
+map("n", "e", "<end>")
+map("n", "sj", "<c-w>j")
+map("n", "sk", "<c-w>k")
+map("n", "sl", "<c-w>l")
+map("n", "ss", "<c-w>s")
+map("n", "sv", "<c-w>v")
+map("n", "<tab>", "%")
+map("n", "<leader>n", ":noh<enter>")
+map("n", "\\", ":LazyGit<enter>")
+map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<cr>", "go to previous diagnostic message")
+map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<cr>", "go to next diagnostic message")
+map({ "n", "v" }, "<leader>r", "<cmd>Lspsaga rename<cr>", "rename symbol")

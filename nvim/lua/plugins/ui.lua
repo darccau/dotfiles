@@ -174,6 +174,8 @@ return {
           "typescriptreact",
           "vue",
           "xml",
+          "markdown",
+          "markdown_inline",
         },
       },
     },
