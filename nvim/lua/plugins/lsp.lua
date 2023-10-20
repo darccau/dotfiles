@@ -103,8 +103,8 @@ return {
           ensure_installed = {
             "lua_ls",
             "terraformls",
+            "ruff",
             "gopls",
-            "pyright",
             "tsserver",
           },
         },
@@ -115,6 +115,7 @@ return {
         opts = {
           ensure_installed = {
             "stylua",
+            "isort",
             "black",
             "terraform_fmt",
             "prettier",
@@ -132,7 +133,6 @@ return {
       lspconfig.lua_ls.setup({})
       lspconfig.tsserver.setup({})
       lspconfig.gopls.setup({})
-      lspconfig.pyright.setup({})
       lspconfig.terraformls.setup({})
     end,
   },
@@ -157,7 +157,10 @@ return {
         sources = {
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.gofmt,
+          nls.builtins.formatting.isort,
+          nls.builtins.diagnostics.ruff,
           nls.builtins.formatting.terraform_fmt,
+          nls.builtins.formatting.black,
           nls.builtins.formatting.mdformat,
         },
         on_attach = function(client, bufnr)
