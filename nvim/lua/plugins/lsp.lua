@@ -103,8 +103,8 @@ return {
           ensure_installed = {
             "lua_ls",
             "terraformls",
-            "ruff",
             "gopls",
+            "pyright",
             "tsserver",
           },
         },
@@ -116,6 +116,7 @@ return {
           ensure_installed = {
             "stylua",
             "isort",
+            "ruff",
             "black",
             "terraform_fmt",
             "prettier",
@@ -134,6 +135,15 @@ return {
       lspconfig.tsserver.setup({})
       lspconfig.gopls.setup({})
       lspconfig.terraformls.setup({})
+      lspconfig.pyright.setup({
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "off",
+            },
+          },
+        },
+      })
     end,
   },
 
@@ -147,7 +157,7 @@ return {
   -- Keep looking into this, maybe it's a config error on my end?
   -- Related: https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     dependencies = { "williamboman/mason.nvim", "nvim-lua/plenary.nvim" },
     event = { "BufReadPre", "BufNewFile" },
     opts = function()
@@ -161,7 +171,7 @@ return {
           nls.builtins.diagnostics.ruff,
           nls.builtins.formatting.terraform_fmt,
           nls.builtins.formatting.black,
-          nls.builtins.formatting.mdformat,
+          -- nls.builtins.formatting.mdformat,
         },
         on_attach = function(client, bufnr)
           -- Autoformat on save if supported
