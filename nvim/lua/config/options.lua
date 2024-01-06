@@ -1,163 +1,54 @@
-local opt = vim.opt
-local g = vim.g
-
 vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
--- Cursor highlighting
-opt.cursorline = true
+local options = {
+  incsearch = true, -- make search act like search in modern browsers
+  backup = false, -- creates a backup file
+  clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+  cmdheight = 1, -- more space in the neovim command line for displaying messages
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  conceallevel = 0, -- so that `` is visible in markdown files
+  fileencoding = "utf-8", -- the encoding written to a file
+  hlsearch = true, -- highlight all matches on previous search pattern
+  ignorecase = true, -- ignore case in search patterns
+  mouse = "a", -- allow the mouse to be used in neovim
+  pumheight = 10, -- pop up menu height
+  showmode = false, -- we don't need to see things like -- INSERT -- anymore
+  showtabline = 0, -- always show tabs
+  smartcase = true, -- smart case
+  smartindent = true, -- make indenting smarter again
+  splitbelow = true, -- force all horizontal splits to go below current window
+  splitright = true, -- force all vertical splits to go to the right of current window
+  swapfile = false, -- creates a swapfile
+  termguicolors = true, -- set term gui colors (most terminals support this)
+  timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
+  undofile = true, -- enable persistent undo
+  updatetime = 100, -- faster completion (4000ms default)
+  writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  expandtab = true, -- convert tabs to spaces
+  shiftwidth = 2, -- the number of spaces inserted for each indentation
+  -- tabstop = 2,                             -- insert 2 spaces for a tab
+  cursorline = false, -- highlight the current line
+  number = true, -- set numbered lines
+  breakindent = true, -- wrap lines with indent
+  relativenumber = true, -- set relative numbered lines
+  numberwidth = 4, -- set number column width to 2 {default 4}
+  signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
+  wrap = false, -- display lines as one long line
+  scrolloff = 8, -- Makes sure there are always eight lines of context
+  sidescrolloff = 8, -- Makes sure there are always eight lines of context
+  -- laststatus = 0,                          -- Always display the status line
+  showcmd = false, -- Don't show the command in the last line
+  ruler = false, -- Don't show the ruler
+  guifont = "monospace:h17", -- the font used in graphical neovim applications
+  title = true, -- set the title of window to the value of the titlestring
+  confirm = true, -- confirm to save changes before exiting modified buffer
+  fillchars = { eob = " " }, -- change the character at the end of buffer
+  -- cursorlineopt = "number",                -- set the cursorline
+}
 
--- Pane splitting
-opt.splitright = true
-opt.splitbelow = true
-
--- Searching
-opt.smartcase = true
-opt.hlsearch = true
-opt.ignorecase = true
-opt.incsearch = true
-
--- Auto indent
-opt.autoindent = true
-
--- Make terminal support truecolor
-opt.termguicolors = true
-
--- Make neovim use the system clipboard
-opt.clipboard = "unnamedplus"
-
--- Disable old vim status
-opt.showmode = false
-
--- Set relative line numbers
-opt.number = true
-opt.numberwidth = 2
-
--- Tab config
-opt.expandtab = true
-opt.smarttab = true
-opt.smartindent = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.shiftround = true
-
--- Code folding
-opt.foldenable = true
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldcolumn = "1"
-
--- Decrease update time
-opt.updatetime = 200
-
--- Disable swapfile
-opt.swapfile = false
-
--- Enable persistent undo
-opt.undofile = true
-
--- Always show tabline
-opt.showtabline = 0
-
--- Disable mouse support
-opt.mouse = "a"
-
--- Scrolloff
-opt.scrolloff = 7
-opt.sidescrolloff = 7
-
--- Disable wrapping
-opt.wrap = false
-
--- Enable list
-opt.list = true
-
--- Fill chars
-opt.fillchars = { eob = " " }
-
--- Enable lazy redraw for performance
-opt.lazyredraw = true
-
--- Have the statusline only display at the bottom
-opt.laststatus = 3
-
--- Confirm to save changed before exiting the modified buffer
-opt.confirm = true
-
--- Hide * markup for bold and italic
-opt.conceallevel = 3
-
--- Hide the command line unless needed
-opt.cmdheight = 0
-
--- Hide statusline
--- opt.laststatus = 0
-
--- Use ripgrep as the grep program for neovim
-opt.grepprg = "rg --vimgrep"
-
--- Set the grep format
-opt.grepformat = "%f:%l:%c:%m"
-
--- shortmess options
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
-
--- Enable autowrite
-opt.autowrite = true
-
--- Keep cursor to the same screen line when opening a split
-opt.splitkeep = "screen"
-
--- Set completion options
-opt.completeopt = "menu,menuone,noselect,noinsert"
-
--- Set key timeout to 500ms
-opt.timeout = true
-opt.timeoutlen = 500
-
--- Window config
-opt.winwidth = 10
-opt.winminwidth = 10
-opt.equalalways = false
-
--- Always show the signcolumn
-opt.signcolumn = "yes"
-
--- Formatting options
-opt.formatoptions = "jcroqlnt"
-
--- Set diagnostic config for lsp_lines.nvim
-vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = { highlight_whole_line = false },
-})
-
--- Disable certain builtins
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
-g.loaded_netrwFileHandlers = 1
-g.loaded_gzip = 1
-g.loaded_zip = 1
-g.loaded_zipPlugin = 1
-g.loaded_tar = 1
-g.loaded_tarPlugin = 1
-g.loaded_vimball = 1
-g.loaded_vimballPlugin = 1
-g.loaded_2html_plugin = 1
-g.loaded_logipat = 1
-g.loaded_getscript = 1
-g.loaded_getscriptPlugin = 1
-g.loaded_tutor_mode_plugin = 1
-g.loaded_fzf = 1
-
--- Disable provider warnings in the healthcheck
-g.loaded_node_provider = 0
-g.loaded_perl_provider = 0
-g.loaded_python3_provider = 0
-
--- Set matchparen options for vim-matchup
-g.matchup_matchparen_offscreen = { method = "status_manual " }
-
--- Work async for vim-matchup
-g.matchup_matchparen_deferred = 1
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
