@@ -334,4 +334,97 @@ return {
       })
     end,
   },
+  {
+    "preservim/vim-pencil",
+  },
+
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "Notes",
+          path = "~/Documents/Notes",
+        },
+      },
+      completion = {
+        -- Set to false to disable completion.
+        nvim_cmp = true,
+
+        -- Trigger completion at 2 chars.
+        min_chars = 2,
+
+        -- Where to put new notes created from completion. Valid options are
+        --  * "current_dir" - put new notes in same directory as the current buffer.
+        --  * "notes_subdir" - put new notes in the default notes subdirectory.
+        new_notes_location = "current_dir",
+
+        -- Control how wiki links are completed with these (mutually exclusive) options:
+        --
+        -- 1. Whether to add the note ID during completion.
+        -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
+        -- Mutually exclusive with 'prepend_note_path' and 'use_path_only'.
+        prepend_note_id = true,
+        -- 2. Whether to add the note path during completion.
+        -- E.g. "[[Foo" completes to "[[notes/foo|Foo]]" assuming "notes/foo.md" is the path of the note.
+        -- Mutually exclusive with 'prepend_note_id' and 'use_path_only'.
+        prepend_note_path = false,
+        -- 3. Whether to only use paths during completion.
+        -- E.g. "[[Foo" completes to "[[notes/foo]]" assuming "notes/foo.md" is the path of the note.
+        -- Mutually exclusive with 'prepend_note_id' and 'prepend_note_path'.
+        use_path_only = false,
+      },
+      templates = {
+        subdir = "Templates",
+        date_format = "%Y-%m-%d-%a",
+        time_format = "%H:%M",
+      },
+    },
+  },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      window = {
+        backdrop = 0.95,
+        width = 80, -- width of the Zen window
+        height = 1, -- height of the Zen window
+        options = {
+          signcolumn = "no", -- disable signcolumn
+          number = false, -- disable number column
+          relativenumber = false, -- disable relative numbers
+          -- cursorline = false, -- disable cursorline
+          -- cursorcolumn = false, -- disable cursor column
+          -- foldcolumn = "0", -- disable fold column
+          -- list = false, -- disable whitespace characters
+        },
+      },
+      plugins = {
+        -- disable some global vim options (vim.o...)
+        options = {
+          enabled = true,
+          ruler = false, -- disables the ruler text in the cmd line area
+          showcmd = false, -- disables the command in the last line of the screen
+          -- you may turn on/off statusline in zen mode by setting 'laststatus'
+          -- statusline will be shown only if 'laststatus' == 3
+          laststatus = 0, -- turn off the statusline in zen mode
+        },
+        twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+        gitsigns = { enabled = false }, -- disables git signs
+        tmux = { enabled = true }, -- disables the tmux statusline
+        wezterm = {
+          enabled = true,
+          font = "+20", -- (10% increase per step)
+        },
+      },
+    },
+  },
+  {
+    "folke/twilight.nvim",
+  },
 }

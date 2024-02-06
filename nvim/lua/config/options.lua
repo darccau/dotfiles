@@ -29,24 +29,19 @@ local options = {
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true, -- convert tabs to spaces
   shiftwidth = 2, -- the number of spaces inserted for each indentation
-  -- tabstop = 2,                             -- insert 2 spaces for a tab
   cursorline = false, -- highlight the current line
-  number = true, -- set numbered lines
   breakindent = true, -- wrap lines with indent
-  relativenumber = true, -- set relative numbered lines
+  number = true, -- set relative numbered lines
   numberwidth = 4, -- set number column width to 2 {default 4}
   signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
   wrap = false, -- display lines as one long line
   scrolloff = 8, -- Makes sure there are always eight lines of context
   sidescrolloff = 8, -- Makes sure there are always eight lines of context
-  -- laststatus = 0,                          -- Always display the status line
   showcmd = false, -- Don't show the command in the last line
   ruler = false, -- Don't show the ruler
   guifont = "monospace:h17", -- the font used in graphical neovim applications
   title = true, -- set the title of window to the value of the titlestring
-  confirm = true, -- confirm to save changes before exiting modified buffer
   fillchars = { eob = " " }, -- change the character at the end of buffer
-  -- cursorlineopt = "number",                -- set the cursorline
 }
 
 for k, v in pairs(options) do

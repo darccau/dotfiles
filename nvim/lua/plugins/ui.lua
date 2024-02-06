@@ -140,7 +140,6 @@ return {
         "vue",
         "markdown",
       },
-      context_commentstring = { enable = true, enable_autocmd = false },
       textobjects = {
         select = {
           enable = true,
