@@ -75,39 +75,6 @@ return {
   },
 
   {
-    "nvim-lualine/lualine.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      options = {
-        theme = "tokyonight",
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-          -- 'mason',
-          -- 'dashboard',
-          "NeogitStatus",
-          "NeogitCommitView",
-          "NeogitPopup",
-          "NeogitConsole",
-        },
-      },
-      sections = {
-        lualine_a = { "branch" },
-        lualine_c = { "filename" },
-      },
-      extensions = {
-        "man",
-        "toggleterm",
-        "neo-tree",
-        "symbols-outline",
-        "trouble",
-        "lazy",
-      },
-    },
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       highlight = {
@@ -192,28 +159,54 @@ return {
     },
   },
 
-  --  {
-  --    "lukas-reineke/indent-blankline.nvim",
-  --    dependencies = "nvim-treesitter/nvim-treesitter",
-  --    event = { "BufReadPost", "BufNewFile" },
-  --    opts = {
-  --      char = "▏",
-  --      context_char = "▏",
-  --      use_treesitter = true,
-  --      show_first_indent_level = true,
-  --      show_trailing_blankline_indent = false,
-  --      show_current_context = true,
-  --      show_current_context_start = true,
-  --      filetype_exclude = {
-  --        "help",
-  --        "dashboard",
-  --        "Trouble",
-  --        "neogitstatus",
-  --        "mason",
-  --        "toggleterm",
-  --        "lazy",
-  --        "neo-tree",
-  --      },
-  --    },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   dependencies = "nvim-treesitter/nvim-treesitter",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   opts = {
+  --     char = "▏",
+  --     context_char = "▏",
+  --     use_treesitter = true,
+  --     show_first_indent_level = true,
+  --     show_trailing_blankline_indent = false,
+  --     show_current_context = true,
+  --     --      show_current_context_start = true,
+  --     --      filetype_exclude = {
+  --     --        "help",
+  --     --        "dashboard",
+  --     --        "Trouble",
+  --     --        "neogitstatus",
+  --     --        "mason",
+  --     --        "toggleterm",
+  --     --        "lazy",
+  --     --        "neo-tree",
+  --   },
+  -- },
   --  },
+  {
+    "b0o/incline.nvim",
+    config = function()
+      require("incline").setup()
+    end,
+    -- Optional: Lazy load Incline
+    event = "VeryLazy",
+  },
+
+  {
+    "vimpostor/vim-tpipeline",
+    event = "VeryLazy",
+    init = function()
+      vim.g.tpipeline_autoembed = 0
+      vim.g.tpipeline_statusline = ""
+    end,
+    config = function()
+      vim.cmd.hi({ "link", "StatusLine", "WinSeparator" })
+      vim.g.tpipeline_statusline = ""
+      vim.o.laststatus = 0
+      vim.o.fillchars = "stl:─,stlnc:─"
+    end,
+    cond = function()
+      return vim.env.TMUX ~= nil
+    end,
+  },
 }
