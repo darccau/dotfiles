@@ -1,202 +1,199 @@
 return {
   {
-    "nvimdev/lspsaga.nvim",
-    lazy = true,
-    event = { "LspAttach" },
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    keys = {
-      {
-        "gi",
-        "<cmd>Lspsaga incoming_calls<cr>",
-        "Show incoming calls",
-      },
-      {
-        "go",
-        "<cmd>Lspsaga outgoing_calls<cr>",
-        "Show outgoing calls",
-      },
-      {
-        "C-]",
-        "<cmd>Lspsaga peek_definition<cr>",
-        desc = "Preview LSP definition",
-      },
-      {
-        "C-}",
-        "<cmd>Lspsaga peek_type_definition<cr>",
-        "Go to type definition",
-      },
-      {
-        "gd",
-        "<cmd>Lspsaga goto_definition<cr>",
-        desc = "Go to definition",
-      },
-      {
-        "K",
-        "<cmd>Lspsaga hover_doc<cr>",
-        desc = "Show documentation",
-      },
-    },
-    opts = {
-      ui = {
-        border = "rounded",
-        title = false,
-      },
-      outline = {
-        keys = {
-          expand_or_jump = "<cr>",
-        },
-      },
-      finder = {
-        keys = {
-          vsplit = "v",
-          split = "s",
-          quit = { "q", "<esc>" },
-          edit = { "<cr>" },
-          close_in_preview = "q",
-        },
-      },
-      definition = {
-        edit = "<cr>",
-        vsplit = "<C-v>",
-        split = "<C-s>",
-        tabe = "<C-t>",
-      },
-      lightbulb = {
-        sign = false,
-      },
-      symbol_in_winbar = {
-        enable = false,
-      },
-      beacon = {
-        enable = false,
-      },
-      implement = {
-        enable = false,
-      },
-    },
-  },
-
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      { "folke/neodev.nvim", lazy = true },
-      {
-        "williamboman/mason.nvim",
-        cmd = "Mason",
-        opts = {
-          ui = {
-            icons = {
-              package_installed = "",
-              package_pending = "",
-              package_uninstalled = "",
-            },
-          },
-        },
-      },
-      {
-        "williamboman/mason-lspconfig.nvim",
-        cmd = { "LspInstall", "LspUninstall" },
-        opts = {
-          ensure_installed = {
-            "lua_ls",
-            "terraformls",
-            "gopls",
-            "pyright",
-            "tsserver",
-          },
-        },
-      },
-      {
-        "jay-babu/mason-null-ls.nvim",
-        cmd = { "NullLsInstall", "NullLsUninstall" },
-        opts = {
-          ensure_installed = {
-            "stylua",
-            "isort",
-            "ruff",
-            "black",
-            "terraform_fmt",
-            "prettier",
-            "golangci-lint",
-            "gofmt",
-          },
-        },
-      },
-    },
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local lspconfig = require("lspconfig")
-      -- Load neodev.nvim before loading everything else
-      require("neodev").setup()
-      lspconfig.lua_ls.setup({})
-      lspconfig.tsserver.setup({})
-      lspconfig.gopls.setup({})
-      lspconfig.terraformls.setup({})
-      lspconfig.pyright.setup({
-        settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = "off",
-            },
-          },
-        },
-      })
+    "mason.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "hadolint", "goimports", "gofump" })
     end,
   },
-
-  -- null-ls.nvim
-  -- WARNING: null-ls.nvim will be archived on August 11, 2023
-  -- Find a suitable replacement soon
-  -- Related: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621
-  -- NOTE: Look into alternatives
-  -- Related: https://github.com/mhartington/formatter.nvim and https://github.com/mfussenegger/nvim-lint
-  -- NOTE: mason-tools-installer.nvim seems to work for installing the tools I need, but doesn't seem to work properly.
-  -- Keep looking into this, maybe it's a config error on my end?
-  -- Related: https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim
   {
-    "nvimtools/none-ls.nvim",
-    dependencies = { "williamboman/mason.nvim", "nvim-lua/plenary.nvim" },
-    event = { "BufReadPre", "BufNewFile" },
-    opts = function()
-      local nls = require("null-ls")
-      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-      return {
-        sources = {
-          nls.builtins.formatting.stylua,
-          nls.builtins.formatting.gofmt,
-          nls.builtins.formatting.isort,
-          nls.builtins.diagnostics.ruff,
-          nls.builtins.formatting.terraform_fmt,
-          nls.builtins.formatting.black,
-          -- nls.builtins.formatting.mdformat,
-        },
-        on_attach = function(client, bufnr)
-          -- Autoformat on save if supported
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({
-              group = augroup,
-              buffer = bufnr,
-            })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({
-                  bufnr = bufnr,
-                  -- I don't really like the style of lua_ls's formatting, so I exclude it and instead use stylua
-                  ---@diagnostic disable-next-line: redefined-local
-                  filter = function(client)
-                    return client.name ~= "lua_ls"
-                  end,
-                })
-              end,
-            })
+    "nvim-neotest/neotest",
+    dependencies = { "nvim-neotest/nvim-nio" },
+    opts = {
+      -- Can be a list of adapters like what neotest expects,
+      -- or a list of adapter names,
+      -- or a table of adapter names, mapped to adapter configs.
+      -- The adapter will then be automatically loaded with the config.
+      adapters = {},
+      -- Example for loading neotest-go with a custom config
+      -- adapters = {
+      --   ["neotest-go"] = {
+      --     args = { "-tags=integration" },
+      --   },
+      -- },
+      status = { virtual_text = true },
+      output = { open_on_run = true },
+      quickfix = {
+        open = function()
+          if LazyVim.has("trouble.nvim") then
+            require("trouble").open({ mode = "quickfix", focus = false })
+          else
+            vim.cmd("copen")
           end
         end,
-      }
+      },
+    },
+    config = function(_, opts)
+      local neotest_ns = vim.api.nvim_create_namespace("neotest")
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            -- Replace newline and tab characters with space for more compact diagnostics
+            local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+            return message
+          end,
+        },
+      }, neotest_ns)
+
+      if LazyVim.has("trouble.nvim") then
+        opts.consumers = opts.consumers or {}
+        -- Refresh and auto close trouble after running tests
+        ---@type neotest.Consumer
+        opts.consumers.trouble = function(client)
+          client.listeners.results = function(adapter_id, results, partial)
+            if partial then
+              return
+            end
+            local tree = assert(client:get_position(nil, { adapter = adapter_id }))
+
+            local failed = 0
+            for pos_id, result in pairs(results) do
+              if result.status == "failed" and tree:get_key(pos_id) then
+                failed = failed + 1
+              end
+            end
+            vim.schedule(function()
+              local trouble = require("trouble")
+              if trouble.is_open() then
+                trouble.refresh()
+                if failed == 0 then
+                  trouble.close()
+                end
+              end
+            end)
+            return {}
+          end
+        end
+      end
+
+      if opts.adapters then
+        local adapters = {}
+        for name, config in pairs(opts.adapters or {}) do
+          if type(name) == "number" then
+            if type(config) == "string" then
+              config = require(config)
+            end
+            adapters[#adapters + 1] = config
+          elseif config ~= false then
+            local adapter = require(name)
+            if type(config) == "table" and not vim.tbl_isempty(config) then
+              local meta = getmetatable(adapter)
+              if adapter.setup then
+                adapter.setup(config)
+              elseif meta and meta.__call then
+                adapter(config)
+              else
+                error("Adapter " .. name .. " does not support setup")
+              end
+            end
+            adapters[#adapters + 1] = adapter
+          end
+        end
+        opts.adapters = adapters
+      end
+
+      require("neotest").setup(opts)
     end,
+  -- stylua: ignore
+  keys = {
+    { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
+    { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "Run All Test Files" },
+    { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest" },
+    { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run Last" },
+    { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
+    { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output" },
+    { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
+    { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop" },
+  },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofumpt" },
+      },
+    },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        gopls = {
+          keys = {
+            -- Workaround for the lack of a DAP strategy in neotest-go: https://github.com/nvim-neotest/neotest-go/issues/12
+            { "<leader>td", "<cmd>lua require('dap-go').debug_test()<CR>", desc = "Debug Nearest (Go)" },
+          },
+          settings = {
+            gopls = {
+              gofumpt = true,
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+              analyses = {
+                fieldalignment = true,
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+              semanticTokens = true,
+            },
+          },
+        },
+      },
+      setup = {
+        gopls = function(_, opts)
+          -- workaround for gopls not supporting semanticTokensProvider
+          -- https://github.com/golang/go/issues/54531#issuecomment-1464982242
+          LazyVim.lsp.on_attach(function(client, _)
+            if client.name == "gopls" then
+              if not client.server_capabilities.semanticTokensProvider then
+                local semantic = client.config.capabilities.textDocument.semanticTokens
+                client.server_capabilities.semanticTokensProvider = {
+                  full = true,
+                  legend = {
+                    tokenTypes = semantic.tokenTypes,
+                    tokenModifiers = semantic.tokenModifiers,
+                  },
+                  range = true,
+                }
+              end
+            end
+          end)
+          -- end workaround
+        end,
+      },
+    },
   },
 }
