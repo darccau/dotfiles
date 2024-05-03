@@ -8,19 +8,15 @@ return {
   },
   {
     "nvim-neotest/neotest",
-    dependencies = { "nvim-neotest/nvim-nio" },
+    optional = true,
+    dependencies = { "nvim-neotest/nvim-nio", "nvim-neotest/neotest" },
     opts = {
-      -- Can be a list of adapters like what neotest expects,
-      -- or a list of adapter names,
-      -- or a table of adapter names, mapped to adapter configs.
-      -- The adapter will then be automatically loaded with the config.
-      adapters = {},
-      -- Example for loading neotest-go with a custom config
-      -- adapters = {
-      --   ["neotest-go"] = {
-      --     args = { "-tags=integration" },
-      --   },
-      -- },
+      adapters = {
+        ["neotest-go"] = {
+          args = { "-tags=integration" },
+          recursive_run = true,
+        },
+      },
       status = { virtual_text = true },
       output = { open_on_run = true },
       quickfix = {
@@ -38,7 +34,6 @@ return {
       vim.diagnostic.config({
         virtual_text = {
           format = function(diagnostic)
-            -- Replace newline and tab characters with space for more compact diagnostics
             local message = diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
             return message
           end,
@@ -47,8 +42,6 @@ return {
 
       if LazyVim.has("trouble.nvim") then
         opts.consumers = opts.consumers or {}
-        -- Refresh and auto close trouble after running tests
-        ---@type neotest.Consumer
         opts.consumers.trouble = function(client)
           client.listeners.results = function(adapter_id, results, partial)
             if partial then
@@ -104,17 +97,65 @@ return {
 
       require("neotest").setup(opts)
     end,
-  -- stylua: ignore
-  keys = {
-    { "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Run File" },
-    { "<leader>tT", function() require("neotest").run.run(vim.uv.cwd()) end, desc = "Run All Test Files" },
-    { "<leader>tr", function() require("neotest").run.run() end, desc = "Run Nearest" },
-    { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Run Last" },
-    { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Toggle Summary" },
-    { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Show Output" },
-    { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Toggle Output Panel" },
-    { "<leader>tS", function() require("neotest").run.stop() end, desc = "Stop" },
-  },
+
+    keys = {
+      {
+        "tt",
+        function()
+          require("neotest").run.run(vim.fn.expand("%"))
+        end,
+        desc = "Run File",
+      },
+      {
+        "tT",
+        function()
+          require("neotest").run.run(vim.uv.cwd())
+        end,
+        desc = "Run All Test Files",
+      },
+      {
+        "tr",
+        function()
+          require("neotest").run.run()
+        end,
+        desc = "Run Nearest",
+      },
+      {
+        "tl",
+        function()
+          require("neotest").run.run_last()
+        end,
+        desc = "Run Last",
+      },
+      {
+        "ts",
+        function()
+          require("neotest").summary.toggle()
+        end,
+        desc = "Toggle Summary",
+      },
+      {
+        "to",
+        function()
+          require("neotest").output.open({ enter = true, auto_close = true })
+        end,
+        desc = "Show Output",
+      },
+      {
+        "tO",
+        function()
+          require("neotest").output_panel.toggle()
+        end,
+        desc = "Toggle Output Panel",
+      },
+      {
+        "tS",
+        function()
+          require("neotest").run.stop()
+        end,
+        desc = "Stop",
+      },
+    },
   },
   {
     "stevearc/conform.nvim",

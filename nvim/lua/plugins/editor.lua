@@ -21,12 +21,10 @@ return {
         },
       },
 
-      notes_subdir = "notes",
-
       log_level = vim.log.levels.INFO,
 
       daily_notes = {
-        folder = "notes/dailies",
+        folder = "dailies",
         date_format = "%Y-%m-%d",
         alias_format = "%B %-d, %Y",
         template = "~/Documents/notes/Templates/Dairy.md",
@@ -188,13 +186,13 @@ return {
           width = 120,
           height = 1,
           options = {
-            -- signcolumn = "no", -- disable signcolumn
-            -- number = false, -- disable number column
-            -- relativenumber = false, -- disable relative numbers
-            -- cursorline = false, -- disable cursorline
-            -- cursorcolumn = false, -- disable cursor column
-            -- foldcolumn = "0", -- disable fold column
-            -- list = false, -- disable whitespace characters
+            signcolumn = "no", -- disable signcolumn
+            number = false, -- disable number column
+            relativenumber = false, -- disable relative numbers
+            cursorline = false, -- disable cursorline
+            cursorcolumn = false, -- disable cursor column
+            foldcolumn = "0", -- disable fold column
+            list = false, -- disable whitespace characters
           },
         },
         plugins = {
@@ -214,7 +212,7 @@ return {
   {
     "karb94/neoscroll.nvim",
     opts = {
-      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+      mappings = { "<C-u>", "<C-d>" },
       hide_cursor = true,
       stop_eof = true,
       respect_scrolloff = false,
@@ -303,6 +301,92 @@ return {
           require("harpoon"):list():select(5)
         end,
         desc = "Harpoon to file 5",
+      },
+    },
+  },
+  {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    opts = {
+      default_to_projects_v2 = true,
+      default_merge_method = "squash",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
+    "sindrets/diffview.nvim",
+    lazy = true,
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewLog",
+      "DiffviewRefresh",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewFileHistory",
+    },
+    opts = function()
+      local keymap_q_close = { "n", "q", ":DiffviewClose<cr>", { desc = "Diffview Close" } }
+
+      return {
+        enhanced_diff_hl = true,
+        keymaps = {
+          view = {
+            keymap_q_close,
+          },
+          file_panel = {
+            keymap_q_close,
+          },
+          file_history_panel = {
+            keymap_q_close,
+          },
+        },
+      }
+    end,
+  },
+  {
+    "rest-nvim/rest.nvim",
+    dependencies = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      require("rest-nvim").setup({
+        result_split_horizontal = false,
+        result_split_in_place = false,
+        stay_in_current_window_after_split = false,
+        skip_ssl_verification = false,
+        encode_url = true,
+        highlight = {
+          enabled = true,
+          timeout = 150,
+        },
+        result = {
+          show_url = true,
+          show_curl_command = false,
+          show_http_info = true,
+          show_headers = true,
+          show_statistics = false,
+          formatters = {
+            json = "jq",
+            html = function(body)
+              return vim.fn.system({ "tidy", "-i", "-q", "-" }, body)
+            end,
+          },
+        },
+        jump_to_request = false,
+        env_file = ".env",
+        custom_dynamic_variables = {},
+        yank_dry_run = true,
+        search_back = true,
+      })
+    end,
+    keys = {
+      {
+        "<space>r",
+        "<Plug>RestNvim",
+        desc = "Test the current file",
       },
     },
   },

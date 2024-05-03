@@ -24,9 +24,7 @@ end
 
 vim.o.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
 
--- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
-
 local options = {
   confirm = false,
   autowrite = true,
@@ -39,7 +37,7 @@ local options = {
   grepprg = "rg --vimgrep",
   ignorecase = true,
   inccommand = "nosplit",
-  laststatus = 3,
+  laststatus = 0,
   list = true,
   mouse = "a",
   number = true,
