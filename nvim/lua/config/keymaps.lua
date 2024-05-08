@@ -1,12 +1,12 @@
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
-map("n", "<leader>q", ":q<enter>", opts)
+map("n", "<leader>q", ":q!<enter>", opts)
 map("n", "<leader>w", ":up<enter>", opts)
 map("n", "<leader>a", ":wa<enter>", opts)
 
 -- zenmode
-map("n", "<leader>z", "<cmd>ZenMode<enter>", opts)
+map("n", "<leader>z", "<cmd>ZenMode | PencilHard<enter>", opts)
 
 -- splits movments
 map("n", "sh", "<c-w>h", opts)
@@ -34,7 +34,7 @@ map("n", "<space>s", "<cmd>ObsidianSearch<cr>", opts)
 map("n", "<space>t", "<cmd>ObsidianTemplate<cr>", opts)
 
 -- file explore
-map("n", "<space>e", "<cmd>Neotree<cr>", opts)
+map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
 -- clear search with <esc>
 map({ "i", "n" }, "<leader>n", "<cmd>noh<cr><esc>", opts)
@@ -43,10 +43,6 @@ map({ "i", "n" }, "<leader>n", "<cmd>noh<cr><esc>", opts)
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
-
--- sort
-map("v", "<leader>j", ":'<,'>!jq<CR>", opts)
-map("v", "<leader>d", ":'<,'>!jwtd<CR>", opts)
 
 -- run macro on visual block
 map("v", "<leader>m", ":'<,'> norm @q<CR>", opts)
