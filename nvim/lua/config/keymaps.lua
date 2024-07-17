@@ -6,7 +6,7 @@ map("n", "<leader>w", ":up<enter>", opts)
 map("n", "<leader>a", ":wa<enter>", opts)
 
 -- zenmode
-map("n", "<leader>z", "<cmd>ZenMode | PencilHard<enter>", opts)
+map("n", "<leader>z", "<cmd>ZenMode<enter>", opts)
 
 -- splits movments
 map("n", "sh", "<c-w>h", opts)
@@ -54,7 +54,9 @@ map({ "n", "x", "o" }, "L", "g_", opts)
 -- fuzzy
 map("n", "<leader>t", "<cmd>TodoTelescope<cr>", opts)
 map("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-map("n", "<leader>r", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "<leader>s", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "<leader>r", "<cmd>Telescope lsp_references<cr>", opts)
+map("n", "<leader>d", "<cmd>Telescope lsp_definitions<cr>", opts)
 map("n", "<leader>e", "<cmd>Telescope diagnostics<cr>", opts)
 map("n", "<leader>g", "<cmd>Telescope git_status<cr>", opts)
 
