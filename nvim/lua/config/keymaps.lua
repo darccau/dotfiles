@@ -31,19 +31,20 @@ map("n", "<space>t", "<cmd>ObsidianTemplate<cr>", opts)
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
 -- regex
-map("n", "ss", "<cmd>%s/\\v", opts)
+map("n", "ss", ":%s/\\v", opts)
 map("v", "s", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom" })
 
 -- run script
 map("v", "x", ":'<,'>!bash -e<CR>", { noremap = true, silent = true })
-map("n", "<leader>x", ":%w !bash -e <cr>")
-map("n", "<leader>e", ":%w !python3 <cr>")
+map("v", "r", ":'<,'>w !bash -e<CR>", { noremap = true, silent = true })
+map("n", "<leader>r", ":%w !bash -e <cr>")
+map("n", "<leader>c", ":%!")
 
 map("n", "cx", ":!chmod u+x %<cr>", { desc = "make file executable" })
 
 map("n", "te", "<cmd>tabedit<cr>", opts)
-map("n", "<space><tab>", "<cmd>tabnext<cr>", opts)
-map("n", "<space><s-tab>", "<cmd>tabprevious<cr>", opts)
+map("n", "H", "<cmd>tabprevious<cr>", opts)
+map("n", "L", "<cmd>tabnext<cr>", opts)
 
 map("n", "J", "mzJ`z", { desc = "join lines without spaces" })
 map("n", "n", "nzzzv", { desc = "keep cursor centered" })
