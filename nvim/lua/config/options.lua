@@ -12,6 +12,7 @@ local options = {
   relativenumber = false,
   diffopt = "filler,iwhite,internal,linematch:60,algorithm:patience",
   splitkeep = "cursor",
+  textwidth = 80,
   splitbelow = true,
   splitright = true,
   virtualedit = "all",
