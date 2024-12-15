@@ -37,6 +37,7 @@ map("v", "s", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom
 -- run script
 map("v", "x", ":'<,'>!bash -e<CR>", { noremap = true, silent = true })
 map("v", "r", ":'<,'>w !bash -e<CR>", { noremap = true, silent = true })
+map("v", "c", ":%! ", { noremap = true, silent = true })
 map("n", "<leader>r", ":%w !bash -e <cr>")
 map("n", "<leader>c", ":%!")
 
@@ -64,7 +65,7 @@ map("n", "<leader>n", "<cmd>nohlsearch<cr>", opts)
 map("n", "st", "<cmd>TodoTelescope<cr>", opts)
 map("n", "sb", "<cmd>Telescope buffers<cr>", opts)
 map("n", "sf", "<cmd>Telescope find_files<cr>", opts)
-map("n", "<leader>s", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "sr", "<cmd>Telescope live_grep<cr>", opts)
 map("n", "sm", "<cmd>Telescope lsp_references<cr>", opts)
 map("n", "sd", "<cmd>Telescope lsp_definitions<cr>", opts)
 map("n", "se", "<cmd>Telescope diagnostics<cr>", opts)
