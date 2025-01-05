@@ -11,7 +11,7 @@ map("n", "sk", "<c-w>k", opts)
 map("n", "sl", "<c-w>l", opts)
 
 -- splits
-map("n", "sp", "<c-w>s", opts)
+map("n", "ss", "<c-w>s", opts)
 map("n", "sv", "<c-w>v", opts)
 
 -- replace % to tab
@@ -21,25 +21,25 @@ map({ "n", "v" }, "<tab>", "%", opts)
 map("n", "\\", ":LazyGit<enter>", opts)
 
 -- obsidian
-map("n", "<space>b", "<cmd>ObsidianBacklinks<cr>", opts)
-map("n", "<space>d", "<cmd>ObsidianToday<cr>", opts)
-map("n", "<space>m", "<cmd>ObsidianTomorrow<cr>", opts)
-map("n", "<space>y", "<cmd>ObsidianYesterday<cr>", opts)
-map("n", "<space>s", "<cmd>ObsidianSearch<cr>", opts)
-map("n", "<space>t", "<cmd>ObsidianTemplate<cr>", opts)
+-- map("n", "<space>b", "<cmd>ObsidianBacklinks<cr>", opts)
+-- map("n", "<space>d", "<cmd>ObsidianToday<cr>", opts)
+-- map("n", "<space>m", "<cmd>ObsidianTomorrow<cr>", opts)
+-- map("n", "<space>y", "<cmd>ObsidianYesterday<cr>", opts)
+-- map("n", "<space>s", "<cmd>ObsidianSearch<cr>", opts)
+-- map("n", "<space>t", "<cmd>ObsidianTemplate<cr>", opts)
 
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
 -- regex
-map("n", "ss", ":%s/\\v", opts)
-map("v", "s", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom" })
+map("n", "rp", ":%s/\\v", opts)
+map("v", "r", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom" })
 
 -- run script
 map("v", "x", ":'<,'>!bash -e<CR>", { noremap = true, silent = true })
-map("v", "r", ":'<,'>w !bash -e<CR>", { noremap = true, silent = true })
 map("v", "c", ":%! ", { noremap = true, silent = true })
 map("n", "<leader>r", ":%w !bash -e <cr>")
 map("n", "<leader>c", ":%!")
+map("n", "<leader>j", ":%! jq . ")
 
 map("n", "cx", ":!chmod u+x %<cr>", { desc = "make file executable" })
 

@@ -89,4 +89,8 @@ return {
       deceleration_table = { { 150, 9999 } },
     },
   },
+  {
+    "nick-skriabin/commitment.nvim",
+    opts = {},
+  },
 }
