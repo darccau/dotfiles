@@ -18,7 +18,7 @@ map("n", "sv", "<c-w>v", opts)
 map({ "n", "v" }, "<tab>", "%", opts)
 
 -- lazygit
-map("n", "\\", ":LazyGit<enter>", opts)
+map("n", "\\", "<cmd>Fugit2<cr>", opts)
 
 -- obsidian
 -- map("n", "<space>b", "<cmd>ObsidianBacklinks<cr>", opts)
@@ -73,8 +73,3 @@ map("n", "sg", "<cmd>Telescope git_status<cr>", opts)
 
 -- write mode
 map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
-
--- Actions
-map({ "n", "v" }, "<space>s", "<cmd>Gitsigns stage_hunk<cr>", opts)
-map("n", "<space>u", "<cmd>Gitsigns undo_stage_hunk<cr>", opts)
-map("n", "<space>p", "<cmd>Gitsigns preview_hunk<cr>", opts)
