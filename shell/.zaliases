@@ -1,0 +1,7 @@
+alias tedit='nvim ~/.tmux.conf'
+alias zedit='nvim ~/.zshrc'
+alias vi='nvim'
+alias k='kubectl '
+alias p='podman '
+alias ls='/usr/bin/ls'
+alias ll='eza --color=always  --icons --git'

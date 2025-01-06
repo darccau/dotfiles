@@ -1,0 +1,5 @@
+export EDITOR=nvim
+export BROWSER=FIREFOX
+export git_main_branch=main
+
+
