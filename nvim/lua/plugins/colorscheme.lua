@@ -5,7 +5,7 @@ return {
     priority = 1000,
     opts = {
       style = "night",
-      transparent = false,
+      transparent = true,
       lualine_bold = true,
       terminal_colors = true,
       on_highlights = function(hl, c)
