@@ -6,14 +6,13 @@ source $ZSH/oh-my-zsh.sh
 
 plugins=(z git kubectl zsh-autosuggestions zsh-syntax-highlighting web-search colored-man-pages sudo)
 
-source "/Users/darccu/Documents/projects/dotfiles/shell/.zaliases"
-source "/Users/darccu/Documents/projects/dotfiles/shell/.zfunctions"
-source "/Users/darccu/Documents/projects/dotfiles/shell/.zenvs"
-
 export FZF_BASE=/usr/bin/fzf
 export EDITOR=nvim
 export TSURU_TARGET='https://tsuru.globoi.com'
 
+source ".zaliases"
+source ".zfunctions"
+source ".zenvs"
 
 fpath=(${HOME}/.oh-my-zsh/completions/ $fpath)
 
