@@ -1,6 +1,8 @@
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
+map("i", "<tab>", "<esc>", opts)
+
 map("n", "<leader>q", ":q!<enter>", opts)
 map("n", "<leader>w", ":up<enter>", opts)
 map("n", "<leader>a", ":wa<enter>", opts)
@@ -16,17 +18,7 @@ map("n", "sv", "<c-w>v", opts)
 
 -- replace % to tab
 map({ "n", "v" }, "<tab>", "%", opts)
-
--- lazygit
-map("n", "\\", "<cmd>Fugit2<cr>", opts)
-
--- obsidian
--- map("n", "<space>b", "<cmd>ObsidianBacklinks<cr>", opts)
--- map("n", "<space>d", "<cmd>ObsidianToday<cr>", opts)
--- map("n", "<space>m", "<cmd>ObsidianTomorrow<cr>", opts)
--- map("n", "<space>y", "<cmd>ObsidianYesterday<cr>", opts)
--- map("n", "<space>s", "<cmd>ObsidianSearch<cr>", opts)
--- map("n", "<space>t", "<cmd>ObsidianTemplate<cr>", opts)
+-- map({ "n", "v" }, "<cr>", "%", opts)
 
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
@@ -72,4 +64,4 @@ map("n", "se", "<cmd>Telescope diagnostics<cr>", opts)
 map("n", "sg", "<cmd>Telescope git_status<cr>", opts)
 
 -- write mode
-map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
+-- map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
