@@ -10,9 +10,9 @@ export FZF_BASE=/usr/bin/fzf
 export EDITOR=nvim
 export TSURU_TARGET='https://tsuru.globoi.com'
 
-source ".zaliases"
-source ".zfunctions"
-source ".zenvs"
+source "/Users/darccu/Documents/projects/dotfiles/shell/.zaliases"
+source "/Users/darccu/Documents/projects/dotfiles/shell/.zfunctions"
+source "/Users/darccu/Documents/projects/dotfiles/shell/.zenvs"
 
 fpath=(${HOME}/.oh-my-zsh/completions/ $fpath)
 
@@ -31,9 +31,16 @@ bindkey '^j' zoxider
 # bun completions
 [ -s "/Users/darccu/.bun/_bun" ] && source "/Users/darccu/.bun/_bun"
 
+function fuzz {
+  ffuf -u "$1/FUZZ" -w "$2" \ 
+    -H "User-Agent: Mozilla Firefox Mozilla/5.0" \
+    -H "X-Globo: paixao" -ac -mc all -t 33
+  }
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin/:$PATH"
 autoload -U compinit; compinit
 
 autoload -U +X bashcompinit && bashcompinit
