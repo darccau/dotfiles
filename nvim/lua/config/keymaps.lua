@@ -64,4 +64,4 @@ map("n", "se", "<cmd>Telescope diagnostics<cr>", opts)
 map("n", "sg", "<cmd>Telescope git_status<cr>", opts)
 
 -- write mode
--- map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
+map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
