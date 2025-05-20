@@ -16,13 +16,12 @@ map("n", "sl", "<c-w>l", opts)
 map("n", "ss", "<c-w>s", opts)
 map("n", "sv", "<c-w>v", opts)
 
--- replace % to tab
+-- set % as tab
 map({ "n", "v" }, "<tab>", "%", opts)
--- map({ "n", "v" }, "<cr>", "%", opts)
 
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
--- regex
+-- replace
 map("n", "rp", ":%s/\\v", opts)
 map("v", "r", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom" })
 
