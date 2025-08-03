@@ -1,17 +1,20 @@
-[github]
-  user = darccau
-
-[user]
-	user = darccau
-  email = darccau@gmail.com
-  signingkey = 896653FF5E0505AD
-
-[hub]
-  protocol = https
-
 [core]
   excludesfile = ~/.gitignore
   editor = nvim
+
+[user]
+  user = darccau
+  email = darccau@gmail.com
+  signingkey = 896653FF5E0505AD
+
+[gpg]
+  program = gpg
+
+[init]
+  defaultBranch = main
+
+[rerere]
+	enabled = true
 
 [color]
   status = auto
@@ -41,33 +44,17 @@
   type = cat-file -t
   dump = cat-file -p
   find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | fzf | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
-  # edit conflicted file on merge
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
-  # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
 [diff]
   tool = nvimdiff
 
-[difftool "nvimdiff"]
-  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
-  path =
-
-[mergetool "nvimdiff"]
-  cmd = nvim -d \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+[merge]
+	tool = "nvim"
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
 	process = git-lfs filter-process
-
-[init]
-  defaultBranch = main
-
-[gpg]
-  program = gpg
-
-[credential]
-	helper = store
