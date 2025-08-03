@@ -1,8 +1,6 @@
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
-map("i", "<tab>", "<esc>", opts)
-
 map("n", "<leader>q", ":q!<enter>", opts)
 map("n", "<leader>w", ":up<enter>", opts)
 map("n", "<leader>a", ":wa<enter>", opts)
@@ -13,16 +11,16 @@ map("n", "sk", "<c-w>k", opts)
 map("n", "sl", "<c-w>l", opts)
 
 -- splits
-map("n", "ss", "<c-w>s", opts)
+map("n", "sp", "<c-w>s", opts)
 map("n", "sv", "<c-w>v", opts)
 
 -- set % as tab
-map({ "n", "v" }, "<tab>", "%", opts)
+map({ "n", "v" }, "<esc>", "%", opts)
 
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
 -- replace
-map("n", "rp", ":%s/\\v", opts)
+map("n", "ss", ":%s/\\v", opts)
 map("v", "r", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom" })
 
 -- run script
