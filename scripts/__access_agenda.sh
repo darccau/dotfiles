@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 
-DAYS_INDEX=(Sunday Monday Tuesday Wednesday Thursday Friday Saturday)
-
+DAYS_INDEX=(Monday Tuesday Wednesday Thursday Friday Saturday)
 TODAYS_INDEX=$(date +%w)
 
-UPCOMING_DAYS=("${DAYS_INDEX[@]:TODAYS_INDEX}")
+# Sunday comes first, renamed to "Weekly Planning"
+OPTIONS=("Weekly Planning" "${DAYS_INDEX[@]}")
 
-PIKED_DAY=$(printf "%s\n" "${UPCOMING_DAYS[@]}" | fzf --prompt="Pick a day: ")
+# Add "Monthly Planning" at the end
+OPTIONS+=("Monthly Planning")
 
-[[ -z "$PIKED_DAY" ]] && exit 1
+# Prompt user to pick
+SELECTED=$(printf "%s\n" "${OPTIONS[@]}" | fzf --prompt="Pick a day: ")
 
-declare -A DAY_MAP=(
-  [Sunday]=0
+[[ -z "$SELECTED" ]] && exit 1
+
+# Map labels to their corresponding day index
+declare -A LABEL_MAP=(
+  ["Weekly Planning"]=0
   [Monday]=1
   [Tuesday]=2
   [Wednesday]=3
@@ -20,8 +25,15 @@ declare -A DAY_MAP=(
   [Saturday]=6
 )
 
-TARGET_INDEX=${DAY_MAP[$PIKED_DAY]}
-offset=$(((7 + TARGET_INDEX - TODAYS_INDEX) % 7))
-target_date=$(date -v+${offset}d +%y-%m-%d)
+if [[ "$SELECTED" == "Monthly Planning" ]]; then
+  # Calculate last Sunday of the current month
+  last_day=$(date -v+1m -v-1d +%Y-%m-%d)
+  last_sunday=$(date -j -f "%Y-%m-%d" "$last_day" -v-sun +%Y-%m-%d)
+  target_date="$last_sunday"
+else
+  TARGET_INDEX=${LABEL_MAP[$SELECTED]}
+  offset=$(((7 + TARGET_INDEX - TODAYS_INDEX) % 7))
+  target_date=$(date -v+${offset}d +%Y-%m-%d)
+fi
 
 tmux new-window -n "agenda" nvim ~/Documents/notes/dailies/${target_date}.md
