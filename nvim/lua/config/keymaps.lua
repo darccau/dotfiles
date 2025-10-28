@@ -10,40 +10,37 @@ map("n", "sj", "<c-w>j", opts)
 map("n", "sk", "<c-w>k", opts)
 map("n", "sl", "<c-w>l", opts)
 
--- splits
 map("n", "sp", "<c-w>s", opts)
 map("n", "sv", "<c-w>v", opts)
 
--- set % as tab
-map({ "n", "v" }, "<esc>", "%", opts)
+map({ "n", "v" }, "<tab>", "%", opts)
 
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
--- replace
 map("n", "ss", ":%s/\\v", opts)
-map("v", "r", ":s/\\%V", { desc = "Search only in visual selection usingb%V atom" })
+map("v", "r", ":s/\\%V", opts)
 
 -- run script
-map("v", "x", ":'<,'>!bash -e<CR>", { noremap = true, silent = true })
-map("v", "c", ":%! ", { noremap = true, silent = true })
-map("n", "<leader>r", ":%w !bash -e <cr>")
-map("n", "<leader>c", ":%!")
-map("n", "<leader>j", ":%! jq . ")
+map("v", "x", ":'<,'>!bash -e<CR>", opts)
+map("v", "c", ":%! ", opts)
+map("n", "<leader>r", ":%w !bash -e <cr>", opts)
+map("n", "<leader>c", ":%!", opts)
+map("n", "<leader>j", ":%! jq . ", opts)
 
-map("n", "cx", ":!chmod u+x %<cr>", { desc = "make file executable" })
+map("n", "cx", ":!chmod u+x %<cr>", opts)
 
 map("n", "te", "<cmd>tabedit<cr>", opts)
 map("n", "H", "<cmd>tabprevious<cr>", opts)
 map("n", "L", "<cmd>tabnext<cr>", opts)
 
-map("n", "J", "mzJ`z", { desc = "join lines without spaces" })
-map("n", "n", "nzzzv", { desc = "keep cursor centered" })
-map("n", "N", "Nzzzv", { desc = "keep cursor centered" })
+map("n", "J", "mzJ`z", opts)
+map("n", "n", "nzzzv", opts)
+map("n", "N", "Nzzzv", opts)
 
 -- add undo break-points
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
+map("i", ",", ",<c-g>u", opts)
+map("i", ".", ".<c-g>u", opts)
+map("i", ";", ";<c-g>u", opts)
 
 -- better home/end movementation
 map({ "n", "x", "o" }, "e", "g_", opts)
