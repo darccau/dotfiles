@@ -7,7 +7,8 @@ source $ZSH/oh-my-zsh.sh
 plugins=(z git kubectl zsh-autosuggestions zsh-syntax-highlighting web-search colored-man-pages sudo)
 
 export FZF_BASE=/usr/bin/fzf
-# export TSURU_TARGET='https://tsuru.globoi.com'
+export PATH=$PATH:$HOME/codeql/
+export PATH=$PATH:$HOME/Documents/projects/dotfiles/scripts/
 
 source "/Users/darccu/Documents/projects/dotfiles/shell/.zaliases"
 source "/Users/darccu/Documents/projects/dotfiles/shell/.zfunctions"
@@ -36,6 +37,11 @@ function fuzz {
     -H "X-Globo: paixao" -ac -mc all -t 33
   }
 
+function authapi {
+  local userEmail=$1 
+  curl -k --silent "https://authapi.globoi.com/api/2.0/users/${userEmail}?groups=1" | jq .
+}
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -44,3 +50,7 @@ autoload -U compinit; compinit
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

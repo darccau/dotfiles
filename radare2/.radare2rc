@@ -1,20 +1,54 @@
+# ~/.config/radare2/radare2rc
+
+# ── UI & Display ────────────────────────────────────────────────
 eval scr.color = true
-eval dbg.bep   = entry
-
-eval dbg.slow = true
-
-eval file.id   = true
-eval file.flag = true
-eval file.analyze = true
-
-eval asm.cmtright = true
-
-eco focus
 eval scr.utf8 = true
+eval scr.highlight = true
+eval scr.seek = true
 eval cmd.stack = true
+eval asm.cmtright = true
 eval asm.relsub = true
 eval asm.syntax = intel
-
-# Shows pseudocode.
 eval asm.pseudo = true
 eval asm.describe = true
+eval file.id = true
+eval file.flag = true
+eval file.analyze = true
+eval dbg.bep = entry
+eval dbg.slow = true
+
+# ── Theme: Tokyo Night (Night) ──────────────────────────────────
+# Background: #1a1b26
+# Foreground: #c0caf5
+# Accent:     #7aa2f7
+# Strings:    #9ece6a
+# Numbers:    #e0af68
+# Comments:   #565f89
+# Errors:     #f7768e
+# Highlights: #414868
+# Pointers:   #bb9af7
+
+eco -C tokyo-night-night
+ec prompt      = "#7aa2f7"
+ec border      = "#3b4261"
+ec background  = "#1a1b26"
+ec comment     = "#565f89"
+ec offset      = "#7aa2f7"
+ec input       = "#7dcfff"
+ec output      = "#c0caf5"
+ec number      = "#e0af68"
+ec string      = "#9ece6a"
+ec instruction = "#bb9af7"
+ec flow        = "#7dcfff"
+ec label       = "#7aa2f7"
+ec flag        = "#9aa5ce"
+ec error       = "#f7768e"
+ec warning     = "#e0af68"
+ec highlight   = "#414868"
+ec cursor      = "#c0caf5"
+ec section     = "#bb9af7"
+ec type        = "#9ece6a"
+ec title       = "#7aa2f7"
+
+# ── Focus color scheme ───────────────────────────────────────────
+eco focus
