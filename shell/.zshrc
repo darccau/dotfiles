@@ -31,17 +31,6 @@ bindkey '^j' zoxider
 # bun completions
 [ -s "/Users/darccu/.bun/_bun" ] && source "/Users/darccu/.bun/_bun"
 
-function fuzz {
-  ffuf -u "$1/FUZZ" -w "$2" \ 
-    -H "User-Agent: Mozilla Firefox Mozilla/5.0" \
-    -H "X-Globo: paixao" -ac -mc all -t 33
-  }
-
-function authapi {
-  local userEmail=$1 
-  curl -k --silent "https://authapi.globoi.com/api/2.0/users/${userEmail}?groups=1" | jq .
-}
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
