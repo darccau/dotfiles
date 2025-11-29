@@ -1,13 +1,7 @@
-[github]
-  user = darccau
-
 [user]
   user = darccau
   email = darccau@gmail.com
-  signingkey = 896653FF5E0505AD
-
-[hub]
-  protocol = https
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH1I8hILujd+BqoWyMtsP3ipK0+kgs+OUXDRHRB1sMeg
 
 [core]
   excludesfile = ~/.gitignore
@@ -22,50 +16,37 @@
   grep = auto
   ui = auto
 
-[interactive]
-  diffFilter = delta --color-only
-
 [alias]
   a = "!git status --short | fzf | awk '{print $2}' | xargs git add"
   d = diff
   s = status --short
   uncommit = reset --soft HEAD^
   unstage = reset HEAD
-  ca = commit -a
-  co = checkout
-  cfg = config --global --edit
   ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
   pl = "!git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)"
-  br = branch
   bm = branch --merged
   up = commit -a --amend --no-edit
   bn = branch --no-merged
   df = "!git hist | fzf | awk '{print $2}' | xargs -I {} git diff {}^ {}"
   hist = log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all
   llog = log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative
-  open = "!hub browse"
-  type = cat-file -t
-  dump = cat-file -p
   find = "!f() { git log --pretty=format:\"%h %cd [%cn] %s%d\" --date=relative -S'pretty' -S\"$@\" | fzf | awk '{print $1}' | xargs -I {} git diff {}^ {}; }; f"
   # edit conflicted file on merge
   conflicts = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; nvim `f`"
   # add conflicted file on merge
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 
-[merge]
-  conflictstyle = zdiff3
+[interactive]
+  diffFilter = delta --color-only
 
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
-
-[init]
-  defaultBranch = main
+[commit]
+  gpgsign = true
 
 [gpg]
-  program = gpg
+  format = ssh
 
-[credential]
-  helper = store
+[gpg "ssh"]
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[includeIf "gitdir:~/work/"]
+  path = ~/work/.gitconfig
