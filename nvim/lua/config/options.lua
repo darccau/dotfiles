@@ -16,7 +16,7 @@ local options = {
   splitbelow = true,
   splitright = true,
   virtualedit = "all",
-  spelllang = { "en", "pt_br" },
+  spelllang = "en",
   wrap = false,
 }
 

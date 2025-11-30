@@ -17,7 +17,7 @@ map({ "n", "v" }, "<tab>", "%", opts)
 
 map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 
-map("n", "ss", ":%s/\\v", opts)
+map("n", "rp", ":%s/\\v", opts)
 map("v", "r", ":s/\\%V", opts)
 
 -- run script
