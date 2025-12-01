@@ -1,7 +1,7 @@
 [user]
   user = darccau
   email = darccau@gmail.com
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH1I8hILujd+BqoWyMtsP3ipK0+kgs+OUXDRHRB1sMeg
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIORt54DseC+PgbEIjfQKnvLMUH+pP0zaohZQxn1hrpXX
 
 [core]
   excludesfile = ~/.gitignore
