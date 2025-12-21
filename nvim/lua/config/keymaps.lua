@@ -20,6 +20,14 @@ map("n", "<space>e", "<cmd>Neotree toggle<cr>", opts)
 map("n", "rp", ":%s/\\v", opts)
 map("v", "r", ":s/\\%V", opts)
 
+-- Folding
+map("n", "zn", function()
+  require("ufo").openAllFolds()
+end, opts)
+map("n", "zm", function()
+  require("ufo").closeAllFolds()
+end, opts)
+
 -- run script
 map("v", "x", ":'<,'>!bash -e<CR>", opts)
 map("v", "c", ":%! ", opts)

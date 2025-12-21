@@ -18,13 +18,9 @@
 
 [alias]
   a = "!git status --short | fzf | awk '{print $2}' | xargs git add"
-  d = diff
   s = status --short
   uncommit = reset --soft HEAD^
   unstage = reset HEAD
-  ps = "!git push origin $(git rev-parse --abbrev-ref HEAD)"
-  pl = "!git pull --rebase origin $(git rev-parse --abbrev-ref HEAD)"
-  bm = branch --merged
   up = commit -a --amend --no-edit
   bn = branch --no-merged
   df = "!git hist | fzf | awk '{print $2}' | xargs -I {} git diff {}^ {}"
