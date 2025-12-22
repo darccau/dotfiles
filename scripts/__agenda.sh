@@ -13,25 +13,25 @@ readonly BLUE='\033[0;34m'
 readonly NC='\033[0m' # No Color
 
 # Utility functions
-error() {
+function error {
   echo -e "${RED}Error: $*${NC}" >&2
   exit 1
 }
 
-info() {
+function info {
   echo -e "${BLUE}$*${NC}"
 }
 
-warning() {
+function warning {
   echo -e "${YELLOW}$*${NC}"
 }
 
-success() {
+function success {
   echo -e "${GREEN}$*${NC}"
 }
 
 # Dependency check
-check_dependencies() {
+function check_dependencies {
   local missing_deps=()
 
   command -v fzf >/dev/null 2>&1 || missing_deps+=("fzf")
@@ -43,40 +43,40 @@ check_dependencies() {
 }
 
 # Date utilities
-get_current_year() {
+function get_current_year {
   date +%Y
 }
 
-get_current_month() {
+function get_current_month {
   date +%m
 }
 
-get_current_month_name() {
+function get_current_month_name {
   date +%B | tr '[:upper:]' '[:lower:]'
 }
 
-get_current_week() {
+function get_current_week {
   date +%U
 }
 
-get_current_date() {
+function get_current_date {
   date +%Y-%m-%d
 }
 
-get_current_day_name() {
+function get_current_day_name {
   date +%A
 }
 
-is_sunday() {
+function is_sunday {
   [[ $(date +%u) -eq 7 ]]
 }
 
-is_first_week_of_year() {
+function is_first_week_of_year {
   local week_num=$(get_current_week)
   [[ $week_num -eq 0 || $week_num -eq 1 ]]
 }
 
-is_first_sunday_of_month() {
+function is_first_sunday_of_month {
   if ! is_sunday; then
     return 1
   fi
@@ -86,26 +86,26 @@ is_first_sunday_of_month() {
 }
 
 # Path builders
-get_year_path() {
+function get_year_path {
   local year=${1:-$(get_current_year)}
   echo "${AGENDA_PATH}/${year}"
 }
 
-get_month_path() {
+function get_month_path {
   local year=${1:-$(get_current_year)}
   local month=${2:-$(get_current_month)}
   local month_name=$(date -d "${year}-${month}-01" +%B 2>/dev/null || date -j -f "%Y-%m-%d" "${year}-${month}-01" +%B 2>/dev/null | tr '[:upper:]' '[:lower:]')
   echo "$(get_year_path "$year")/${month}-${month_name}"
 }
 
-get_week_path() {
+function get_week_path {
   local year=${1:-$(get_current_year)}
   local week=${2:-$(get_current_week)}
   local month=$(date +%m)
   echo "$(get_month_path "$year" "$month")/week-$(printf "%02d" "$week")"
 }
 
-get_day_path() {
+function get_day_path {
   local date=${1:-$(get_current_date)}
   local year=$(echo "$date" | cut -d'-' -f1)
   local week=$(date -d "$date" +%U 2>/dev/null || date -j -f "%Y-%m-%d" "$date" +%U 2>/dev/null)
@@ -113,25 +113,25 @@ get_day_path() {
 }
 
 # File getters
-get_year_file() {
+function get_year_file {
   local year=${1:-$(get_current_year)}
   echo "$(get_year_path "$year")/year.md"
 }
 
-get_month_file() {
+function get_month_file {
   local year=${1:-$(get_current_year)}
   local month=${2:-$(get_current_month)}
   echo "$(get_month_path "$year" "$month")/month.md"
 }
 
-get_week_file() {
+function get_week_file {
   local year=${1:-$(get_current_year)}
   local week=${2:-$(get_current_week)}
   echo "$(get_week_path "$year" "$week")/week.md"
 }
 
 # Context retrieval
-get_year_goal() {
+function get_year_goal {
   local year_file=$(get_year_file)
   if [[ -f "$year_file" ]]; then
     grep -v "^#" "$year_file" | grep -v "^<!--" | grep -v "^$" | head -n 1
@@ -140,7 +140,7 @@ get_year_goal() {
   fi
 }
 
-get_month_goal() {
+function get_month_goal {
   local month_file=$(get_month_file)
   if [[ -f "$month_file" ]]; then
     grep -v "^#" "$month_file" | grep -v "^<!--" | grep -v "^$" | head -n 1
@@ -149,7 +149,7 @@ get_month_goal() {
   fi
 }
 
-get_week_goal() {
+function get_week_goal {
   local week_file=$(get_week_file)
   if [[ -f "$week_file" ]]; then
     grep -v "^#" "$week_file" | grep -v "^<!--" | grep -v "^$" | head -n 1
@@ -159,7 +159,7 @@ get_week_goal() {
 }
 
 # Rollover functionality
-get_uncompleted_items() {
+function get_uncompleted_items {
   local file=$1
 
   if [[ ! -f "$file" ]]; then
@@ -170,7 +170,7 @@ get_uncompleted_items() {
   grep "^- \[ \]" "$file" || true
 }
 
-create_rollover_section() {
+function create_rollover_section {
   local previous_file=$1
   local period_name=$2
 
@@ -186,7 +186,7 @@ create_rollover_section() {
 }
 
 # Template creators
-create_year_template() {
+function create_year_template {
   local year=$1
   cat <<EOF
 # Year Goals - $year
@@ -205,7 +205,7 @@ create_year_template() {
 EOF
 }
 
-create_month_template() {
+function create_month_template {
   local year=$1
   local month=$2
   local month_name=$(date -d "${year}-${month}-01" +%B 2>/dev/null || date -j -f "%Y-%m-%d" "${year}-${month}-01" +%B 2>/dev/null)
@@ -232,7 +232,7 @@ EOF
   create_rollover_section "$previous_file" "$month_name"
 }
 
-create_week_template() {
+function create_week_template {
   local year=$1
   local week=$2
   local previous_week=$((week - 1))
@@ -256,7 +256,7 @@ EOF
   create_rollover_section "$previous_file" "Week $previous_week"
 }
 
-create_day_template() {
+function create_day_template {
   local date=$1
   local day_name=$(date -d "$date" +%A 2>/dev/null || date -j -f "%Y-%m-%d" "$date" +%A 2>/dev/null)
   local formatted_date=$(date -d "$date" "+%B %d, %Y" 2>/dev/null || date -j -f "%Y-%m-%d" "$date" "+%B %d, %Y" 2>/dev/null)
@@ -284,7 +284,7 @@ EOF
 }
 
 # File creators
-create_note() {
+function create_note {
   local type=$1
   local file=$2
 
@@ -329,7 +329,7 @@ create_note() {
 }
 
 # Main menu
-show_menu() {
+function show_menu {
   local current_date=$(get_current_date)
   local current_day=$(get_current_day_name)
   local current_week=$(get_current_week)
@@ -356,7 +356,7 @@ show_menu() {
 }
 
 # Main logic
-open_note() {
+function open_note {
   local selection=$1
   local file=""
   local type=""
@@ -397,7 +397,7 @@ open_note() {
 }
 
 # Main execution
-main() {
+function main {
   check_dependencies
 
   local selection=$(show_menu)
