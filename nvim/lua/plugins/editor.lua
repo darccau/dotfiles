@@ -58,6 +58,16 @@ return {
       },
     },
   },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      window = {
+        position = "right",
+      },
+    },
+  },
+
   {
     "kevinhwang91/nvim-ufo",
     dependencies = {
