@@ -1,7 +1,7 @@
 [user]
   user = darccau
   email = darccau@gmail.com
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIORt54DseC+PgbEIjfQKnvLMUH+pP0zaohZQxn1hrpXX
+  signingkey = "E81C148A60871F34!"
 
 [core]
   excludesfile = ~/.gitignore
@@ -39,10 +39,4 @@
   gpgsign = true
 
 [gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-
-[includeIf "gitdir:~/work/"]
-  path = ~/work/.gitconfig
+  format = openpgp
