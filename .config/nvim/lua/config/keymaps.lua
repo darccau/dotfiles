@@ -28,18 +28,7 @@ map("n", "zm", function()
   require("ufo").closeAllFolds()
 end, opts)
 
--- run script
-map("v", "x", ":'<,'>!bash -e<CR>", opts)
-map("v", "c", ":%! ", opts)
-map("n", "<leader>r", ":%w !bash -e <cr>", opts)
-map("n", "<leader>c", ":%!", opts)
-map("n", "<leader>j", ":%! jq . ", opts)
-
 map("n", "cx", ":!chmod u+x %<cr>", opts)
-
-map("n", "te", "<cmd>tabedit<cr>", opts)
-map("n", "H", "<cmd>tabprevious<cr>", opts)
-map("n", "L", "<cmd>tabnext<cr>", opts)
 
 map("n", "J", "mzJ`z", opts)
 map("n", "n", "nzzzv", opts)
@@ -55,15 +44,16 @@ map({ "n", "x", "o" }, "e", "g_", opts)
 
 map("n", "<leader>n", "<cmd>nohlsearch<cr>", opts)
 
+-- Code review
+map("n", "sd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+map("n", "sr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
+map("n", "si", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
+
 -- fuzzy
-map("n", "st", "<cmd>TodoTelescope<cr>", opts)
-map("n", "sb", "<cmd>Telescope buffers<cr>", opts)
-map("n", "sf", "<cmd>Telescope find_files<cr>", opts)
-map("n", "sr", "<cmd>Telescope live_grep<cr>", opts)
-map("n", "sm", "<cmd>Telescope lsp_references<cr>", opts)
-map("n", "sd", "<cmd>Telescope lsp_definitions<cr>", opts)
-map("n", "se", "<cmd>Telescope diagnostics<cr>", opts)
-map("n", "sg", "<cmd>Telescope git_status<cr>", opts)
+map("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
+map("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
+map("n", "<leader>m", "<cmd>Telescope lsp_references<cr>", opts)
+map("n", "<leader>d", "<cmd>Telescope lsp_definitions<cr>", opts)
 
 -- write mode
 map("n", "<leader>z", "<cmd>ZenMode<cr>", opts)
