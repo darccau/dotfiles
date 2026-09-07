@@ -1,84 +1,14 @@
-*.o
-\#*#
-*#
-.#*
-.*~
-*~
+# Nix build artifacts
+result*
+.flake-parts/
+
+# age private keys — never commit these
+.secrets/
+
+# everything else age-encrypted is tracked, but keep any stray files out
+*.age
+!secrets/*.age
+
+# OS cruft
 .DS_Store
-*.sw[po]
-.svn
-*.dSYM
-*.log
-*.dvi
-*.aux
-*.elc
-.zshrc.local
-.python-version
-samples
-.netrwhist
-.bundle
-/vendor/bundle
-Gemfile.lock
-node_modules
-bower_components
-fishd.*
-
-# Vim
-Session.vim
-.vim/bundle/
-.vimrc_sample
-.vim/ftdetect/Dockerfile.vim
-.vim/syntax/Dockerfile.vim
-.vim/snippets/
-
-# Xcode
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-*.xcworkspace/xcshareddata
-
-# CocoaPods
-Pods/
-
-# Atom.io
-.atom/packages/save-session
-.atom/compile-cache
-.atom/storage
-
-# Fish
-.config/fish/fish_variables.x86_64
-.config/fish/completions/
-.config/fish/conf.d/
-!.config/fish/conf.d/android-studio-java-home-env.fish
-!.config/fish/conf.d/nvm-default-version.fish
-!.config/fish/conf.d/pnpm-setup.fish
-!.config/fish/conf.d/brew-setup.fish
-!.config/fish/conf.d/rust-setup.fish
-.config/fish/functions/
-.config/fish/fish_plugins
-.config/fish/fish_variables
-.fishd.tmp*
-
-# Karabiner
-.config/karabiner/automatic_backups
-
-# nvim/lvim
-packer_compiled.lua
-.luarc.json
-lazy-lock.json
-
-# cspell
-.cspell.json
+._*

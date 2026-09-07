@@ -1,0 +1,59 @@
+set page-padding 1
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
+map i recolor
+map p print
+
+set page-padding 1
+set statusbar-h-padding 10
+set statusbar-v-padding 10
+
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+set scroll-page-aware "true"
+set scroll-step 100
+
+set guioptions none
+
+set adjust-open           width
+set incremental-search    false
+set statusbar-home-tilde  false
+set statusbar-basename    false
+set selection-clipboard clipboard
+
+
+set notification-error-bg       "#151627"
+set notification-error-fg       "#a2a3aa"
+set notification-warning-bg     "#151627"
+set notification-warning-fg     "#a2a3aa"
+set notification-bg             "#151627"
+set notification-fg             "#a2a3aa"
+
+set index-bg                    "#151627"
+set index-fg                    "#a2a3aa"
+set index-active-bg             "#c6797e"
+set index-active-fg             "#a2a3aa"
+
+set inputbar-bg                 "#151627"
+set inputbar-fg                 "#a2a3aa"
+
+set statusbar-bg                "#151627"
+set statusbar-fg                "#a2a3aa"
+
+set highlight-color             "#c6797e"
+set highlight-active-color      "#c6797e"
+
+set default-bg                  "#151627"
+set default-fg                  "#a2a3aa"
+set recolor-lightcolor          "#151627"
+set recolor-darkcolor           "#a2a3aa"
+
+set statusbar-bg                "#151627"
+set statusbar-fg                "#aaaaaa"
